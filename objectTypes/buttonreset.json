@@ -1,0 +1,49 @@
+{
+	"name": "ButtonReset",
+	"plugin-id": "Sprite",
+	"sid": 497415877656509,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 238,
+						"height": 102,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Buttons\\Alerts\\close.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3275508,
+						"collisionPoly": {
+							"points": [
+								0,
+								0.00980392156862745,
+								1,
+								0.00980392156862745,
+								1,
+								0.9901960784313726,
+								0,
+								0.9901960784313726
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 371268772661244,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

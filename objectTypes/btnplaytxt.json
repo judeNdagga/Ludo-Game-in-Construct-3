@@ -1,0 +1,16 @@
+{
+	"name": "btnPlaytxt",
+	"plugin-id": "Text",
+	"sid": 609053475138380,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 789134437929274
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

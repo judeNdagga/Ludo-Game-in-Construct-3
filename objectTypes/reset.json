@@ -1,0 +1,16 @@
+{
+	"name": "reset",
+	"plugin-id": "Text",
+	"sid": 931652874478859,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 852102329017014
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

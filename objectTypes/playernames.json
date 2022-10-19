@@ -1,0 +1,16 @@
+{
+	"name": "playerNames",
+	"plugin-id": "Text",
+	"sid": 579996589437686,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 696049032600849
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

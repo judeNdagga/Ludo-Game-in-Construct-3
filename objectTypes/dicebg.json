@@ -1,0 +1,92 @@
+{
+	"name": "diceBg",
+	"plugin-id": "Sprite",
+	"sid": 542953753628990,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 417502630753901
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 136,
+						"height": 136,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9068876,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 340,
+						"height": 136,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5076894,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 340,
+						"height": 136,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4983954,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 340,
+						"height": 136,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7489249,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 340,
+						"height": 136,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7085405,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 555935420293213,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

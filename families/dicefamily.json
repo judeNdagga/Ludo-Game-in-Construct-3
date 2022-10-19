@@ -1,0 +1,25 @@
+{
+	"name": "DiceFamily",
+	"plugin-id": "Sprite",
+	"sid": 452149658791922,
+	"instanceVariables": [
+		{
+			"name": "peerid",
+			"type": "number",
+			"desc": "",
+			"sid": 259091751545109
+		},
+		{
+			"name": "press",
+			"type": "number",
+			"desc": "",
+			"sid": 523532548515382
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"dice",
+		"diceAnim"
+	]
+}

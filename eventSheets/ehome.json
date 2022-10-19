@@ -1,0 +1,2681 @@
+{
+	"name": "eHome",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 861695972217527
+				}
+			],
+			"actions": [
+				{
+					"id": "add-key",
+					"objectClass": "Dictionary",
+					"sid": 857220766314789,
+					"parameters": {
+						"key": "\"color1\"",
+						"value": "rgb(255, 210, 34)"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "Dictionary",
+					"sid": 621477323147340,
+					"parameters": {
+						"key": "\"color2\"",
+						"value": "rgb(2, 162, 123)"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "Dictionary",
+					"sid": 133080805566593,
+					"parameters": {
+						"key": "\"color3\"",
+						"value": "rgb(230, 57, 60)"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "Dictionary",
+					"sid": 380188980603205,
+					"parameters": {
+						"key": "\"color4\"",
+						"value": "rgb(17, 138, 178)"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "Dictionary",
+					"sid": 660469538182466,
+					"parameters": {
+						"key": "\"oldColor\"",
+						"value": "0"
+					}
+				},
+				{
+					"callFunction": "startup",
+					"sid": 632065116361539
+				},
+				{
+					"id": "set-at-x",
+					"objectClass": "storeData",
+					"sid": 325717227764587,
+					"parameters": {
+						"x": "4",
+						"value": "\"Player 1\""
+					}
+				},
+				{
+					"id": "set-at-x",
+					"objectClass": "storeData",
+					"sid": 630503454753321,
+					"parameters": {
+						"x": "5",
+						"value": "\"Player 2\""
+					}
+				},
+				{
+					"id": "set-at-x",
+					"objectClass": "storeData",
+					"sid": 794510625954937,
+					"parameters": {
+						"x": "6",
+						"value": "\"Player 3\""
+					}
+				},
+				{
+					"id": "set-at-x",
+					"objectClass": "storeData",
+					"sid": 714908009196010,
+					"parameters": {
+						"x": "7",
+						"value": "\"Player 4\""
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "ludo",
+					"sid": 841443019303924,
+					"disabled": true,
+					"parameters": {
+						"x": "ViewportRight(0)/2",
+						"y": "playerBG(0).BBoxTop/2"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "bgPattern",
+					"sid": 346799245605993,
+					"parameters": {
+						"width": "ViewportRight(0)",
+						"height": "ViewportBottom(0)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "bgPattern",
+					"sid": 940813419181227,
+					"parameters": {
+						"x": "0",
+						"y": "0"
+					}
+				},
+				{
+					"id": "request-fullscreen",
+					"objectClass": "Browser",
+					"sid": 260686576528080,
+					"disabled": true,
+					"parameters": {
+						"mode": "stretch-scale-outer",
+						"navigation-ui": "auto"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "btnPlyr",
+					"sid": 724215029129573,
+					"parameters": {
+						"x": "ViewportRight(0)/2",
+						"y": "(ViewportBottom(0)-(190*3))/2+(190*Self.IID)"
+					}
+				},
+				{
+					"id": "set-position-to-another-object",
+					"objectClass": "tPlayerBtn",
+					"sid": 584321921564419,
+					"parameters": {
+						"object": "btnPlyr",
+						"image-point-optional": "0"
+					}
+				},
+				{
+					"callFunction": "pin popups",
+					"sid": 926896418709262
+				}
+			],
+			"sid": 756798798416116
+		},
+		{
+			"eventType": "variable",
+			"name": "clicked_player",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 810760145575194
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "select player",
+			"description": "Select players mode",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 354795589683333,
+							"parameters": {
+								"layer": "\"select player\""
+							}
+						},
+						{
+							"id": "is-on-screen",
+							"objectClass": "popBG",
+							"sid": 429168629575329,
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 434427997250405,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 106492101316635,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "btnPlyr"
+									}
+								},
+								{
+									"id": "on-touched-object",
+									"objectClass": "Touch",
+									"sid": 330180564069927,
+									"parameters": {
+										"object": "btnPlyr"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 816638820170458,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-animation-frame",
+											"objectClass": "btnPlyr",
+											"sid": 831997438712600,
+											"parameters": {
+												"comparison": 0,
+												"number": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 610125966699181,
+											"parameters": {
+												"variable": "players_mode",
+												"value": "\"1,3\""
+											}
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 131430078300422,
+											"parameters": {
+												"layer": "\"select player\"",
+												"visibility": "invisible"
+											}
+										},
+										{
+											"callFunction": "create player name input",
+											"sid": 162625341737548
+										}
+									],
+									"sid": 679085175063132
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 104635444080423,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "btnPlyr"
+									}
+								},
+								{
+									"id": "on-touched-object",
+									"objectClass": "Touch",
+									"sid": 915482053266963,
+									"parameters": {
+										"object": "btnPlyr"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 913613362607779,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-animation-frame",
+											"objectClass": "btnPlyr",
+											"sid": 588992353497353,
+											"parameters": {
+												"comparison": 0,
+												"number": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 409901687054427,
+											"parameters": {
+												"variable": "players_mode",
+												"value": "\"1,2,3\""
+											}
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 937040962957495,
+											"parameters": {
+												"layer": "\"select player\"",
+												"visibility": "invisible"
+											}
+										},
+										{
+											"callFunction": "create player name input",
+											"sid": 924434409930127
+										}
+									],
+									"sid": 345905841590438
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-object-clicked",
+									"objectClass": "Mouse",
+									"sid": 570697281482410,
+									"parameters": {
+										"mouse-button": "left",
+										"click-type": "clicked",
+										"object-clicked": "btnPlyr"
+									}
+								},
+								{
+									"id": "on-touched-object",
+									"objectClass": "Touch",
+									"sid": 796060837717759,
+									"parameters": {
+										"object": "btnPlyr"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 132785147505004,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-animation-frame",
+											"objectClass": "btnPlyr",
+											"sid": 854375829810442,
+											"parameters": {
+												"comparison": 0,
+												"number": "2"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 504799053622494,
+											"parameters": {
+												"variable": "players_mode",
+												"value": "\"1,2,3,4\""
+											}
+										},
+										{
+											"id": "set-layer-visible",
+											"objectClass": "System",
+											"sid": 334457535001187,
+											"parameters": {
+												"layer": "\"select player\"",
+												"visibility": "invisible"
+											}
+										},
+										{
+											"callFunction": "create player name input",
+											"sid": 621619320484270
+										}
+									],
+									"sid": 523429976223361
+								}
+							],
+							"isOrBlock": true
+						}
+					]
+				}
+			],
+			"sid": 211643296846865
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "create and choose colors",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "playerBG",
+							"sid": 218717414504255
+						}
+					],
+					"actions": [],
+					"sid": 259881263087783,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 935666335285555,
+									"parameters": {
+										"object": "playerBG"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "playerBG",
+									"sid": 475071009940854,
+									"parameters": {
+										"y": "ViewportTop(0) + (ViewportBottom(0)-(220*(tokencount(players_mode,\",\")-1)))/2+(220*Self.IID)"
+									}
+								}
+							],
+							"sid": 696511641494556
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "TextInput",
+							"sid": 417376268291860
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "TextInput",
+							"sid": 533761487325250,
+							"parameters": {
+								"instance-variable": "id",
+								"value": "loopindex"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 310612473355363
+						},
+						{
+							"callFunction": "text input style",
+							"sid": 514314334844903
+						}
+					],
+					"sid": 674482923907236,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 555781633297846,
+									"parameters": {
+										"object": "TextInput"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "TextInput",
+									"sid": 800625871418685,
+									"parameters": {
+										"y": "ViewportTop(0) + ((ViewportBottom(0)-(220*(tokencount(players_mode,\",\")-1)))/2+(220*Self.IID))-85"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "TextInput",
+									"sid": 218071992109553,
+									"disabled": true,
+									"parameters": {
+										"text": "\"Player \" &Self.IID+1"
+									}
+								},
+								{
+									"id": "set-placeholder",
+									"objectClass": "TextInput",
+									"sid": 524370368808866,
+									"parameters": {
+										"placeholder": "\"Player \" &Self.IID+1"
+									}
+								}
+							],
+							"sid": 548868119711617
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "color",
+							"sid": 129726757725423
+						}
+					],
+					"actions": [],
+					"sid": 991923463095388,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 967701456022004,
+									"parameters": {
+										"object": "color"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 525447178669152
+								},
+								{
+									"id": "set-x",
+									"objectClass": "color",
+									"sid": 171307167333068,
+									"parameters": {
+										"x": "playerBG.BBoxLeft + (playerBG.Width-(90*3))/2+(90*Self.pos)\n"
+									}
+								}
+							],
+							"sid": 371455867640039,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 434600462622290,
+											"parameters": {
+												"variable": "players_mode",
+												"comparison": 0,
+												"value": "\"1,3\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "color",
+											"sid": 572095842331030,
+											"parameters": {
+												"instance-variable": "Player",
+												"value": "color.Player = 2 ? 3 : 1"
+											}
+										}
+									],
+									"sid": 527097125460926
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 528793567202650,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "color"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 799131600470713,
+							"parameters": {
+								"object": "color"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 620787950477785,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-opacity",
+									"objectClass": "color",
+									"sid": 613148733223079,
+									"parameters": {
+										"comparison": 0,
+										"opacity": "100"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 506764446115524,
+									"parameters": {
+										"variable": "clicked_player",
+										"value": "color.Player"
+									}
+								}
+							],
+							"sid": 282673257929123,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "color",
+											"sid": 504614729774501,
+											"parameters": {
+												"instance-variable": "Player",
+												"comparison": 0,
+												"value": "clicked_player"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "color",
+											"sid": 842002717566496,
+											"parameters": {
+												"instance-variable": "color_selected",
+												"value": "color.color"
+											}
+										},
+										{
+											"callFunction": "coloring preview",
+											"sid": 796248254534038,
+											"parameters": [
+												"color.UID"
+											]
+										}
+									],
+									"sid": 686989583738736
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"callFunction": "hide unselected colors for currently picked player",
+											"sid": 231895093063688
+										},
+										{
+											"id": "wait-for-previous-actions",
+											"objectClass": "System",
+											"sid": 245577717317283
+										},
+										{
+											"callFunction": "hide selected color option from other players",
+											"sid": 368850484427182,
+											"parameters": [
+												"color.color"
+											]
+										}
+									],
+									"sid": 632758438771103
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				}
+			],
+			"sid": 405136892932300
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 431192149107557,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "ButtonReset"
+					}
+				},
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 878790762179492,
+					"parameters": {
+						"object": "ButtonReset"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "reset colors",
+					"sid": 702777174414569
+				}
+			],
+			"sid": 387934316927636,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 531123646335768,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "BtnPlay"
+					}
+				},
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 766676075835905,
+					"parameters": {
+						"object": "BtnPlay"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 207190464456866,
+					"parameters": {
+						"layout": "main"
+					}
+				}
+			],
+			"sid": 590461204886219,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 459456277941920,
+							"parameters": {
+								"object": "preview"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-at-x",
+							"objectClass": "storeData",
+							"sid": 168988515725170,
+							"parameters": {
+								"x": "loopindex",
+								"value": "preview.color"
+							}
+						}
+					],
+					"sid": 127227973403163
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-text-changed",
+					"objectClass": "TextInput",
+					"sid": 483798768882725
+				}
+			],
+			"actions": [],
+			"sid": 733355893023144,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 240188816384011,
+							"parameters": {
+								"object": "TextInput"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-at-x",
+							"objectClass": "storeData",
+							"sid": 467375982442831,
+							"parameters": {
+								"x": "TextInput.id+3",
+								"value": "TextInput.Text"
+							}
+						}
+					],
+					"sid": 249247577347605
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 738516260306995,
+					"parameters": {
+						"object": "TextInput"
+					}
+				},
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 224429700527621,
+					"parameters": {
+						"object": "TextInput"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "text input hover style",
+					"sid": 301775863189881
+				}
+			],
+			"sid": 762968150529349,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 134210517196249,
+					"parameters": {
+						"object": "TextInput"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 681704903885992,
+					"parameters": {
+						"object": "TextInput"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "text input style",
+					"sid": 833464023459567
+				}
+			],
+			"sid": 408869683389096,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 792386886513713,
+					"parameters": {
+						"object": "btnPlyr"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 284577202729406,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 493635001495799,
+							"parameters": {
+								"object": "btnPlyr"
+							}
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 948669408802123,
+							"parameters": {
+								"object": "btnPlyr"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "btnPlyr",
+							"sid": 427595240675198,
+							"parameters": {
+								"color": "rgbEx(90,90,90)"
+							}
+						}
+					],
+					"sid": 644900143753540,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 177792158499518,
+							"parameters": {
+								"object": "btnPlyr"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 781971788720887,
+							"parameters": {
+								"object": "btnPlyr"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-default-color",
+							"objectClass": "btnPlyr",
+							"sid": 940486130836910,
+							"parameters": {
+								"color": "rgbEx(100,100,100)"
+							}
+						}
+					],
+					"sid": 677681527849620
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 523365898499386,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "back"
+					}
+				},
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 422756640210617,
+					"parameters": {
+						"object": "back"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "startup",
+					"sid": 526632120741003
+				}
+			],
+			"sid": 219897708007691,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 623389448426591,
+					"parameters": {
+						"object": "playerBG"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-default-color",
+					"objectClass": "playerBG",
+					"sid": 586013438618089,
+					"parameters": {
+						"color": "rgb(45,45,45)"
+					}
+				}
+			],
+			"sid": 759739534510612,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 976707825173828,
+					"parameters": {
+						"object": "playerBG"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-default-color",
+					"objectClass": "playerBG",
+					"sid": 110081202945690,
+					"parameters": {
+						"color": "rgb(50,50,50)"
+					}
+				}
+			],
+			"sid": 470166317974973,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 308064470009107,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "btnOk"
+					}
+				},
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 217938917167083,
+					"parameters": {
+						"object": "btnOk"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "close",
+					"objectClass": "Browser",
+					"sid": 148091511639642
+				}
+			],
+			"sid": 810226649475920,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 523011572214453,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "btnCancel"
+					}
+				},
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 871168967819971,
+					"parameters": {
+						"object": "btnCancel"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "tween-one-property",
+					"objectClass": "popBG",
+					"sid": 240962654605196,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"pop-exit-out\"",
+						"property": "offsetY",
+						"end-value": "-345",
+						"time": "0.5",
+						"ease": "easeinback",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "bgPattern2",
+					"sid": 835201250751575,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"\"",
+						"property": "offsetOpacity",
+						"end-value": "0",
+						"time": "0.5",
+						"ease": "easeinback",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no"
+					}
+				}
+			],
+			"sid": 887551058466522,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-back-button",
+					"objectClass": "Browser",
+					"sid": 498745810401254
+				}
+			],
+			"actions": [],
+			"sid": 869685911842952,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 476846697940655,
+							"parameters": {
+								"layer": "\"select player\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 371924889404270,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "popBG",
+									"sid": 167195787889274,
+									"parameters": {
+										"unique-id": "171"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "popBG",
+									"sid": 394504274131138,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"pop-exit-in\"",
+										"property": "offsetY",
+										"end-value": "ViewportBottom(0)/2",
+										"time": "0.5",
+										"ease": "easeoutback",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "bgPattern2",
+									"sid": 176672940711213,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "80",
+										"time": "0.5",
+										"ease": "easeoutback",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								}
+							],
+							"sid": 260704013864639
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "This function will create Input Text for Player's Name by comparing Player's Mode numbers"
+		},
+		{
+			"functionName": "create player name input",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 396636098251643,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for",
+							"objectClass": "System",
+							"sid": 175017271642850,
+							"parameters": {
+								"name": "\"bg\"",
+								"start-index": "1",
+								"end-index": "tokencount(players_mode,\",\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 895885073931815,
+							"parameters": {
+								"object-to-create": "playerBG",
+								"layer": "\"select colors\"",
+								"x": "ViewportRight(\"select colors\")/2",
+								"y": "ViewportBottom(\"select colors\")/2",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 396742686816579,
+							"parameters": {
+								"object-to-create": "TextInput",
+								"layer": "\"select colors\"",
+								"x": "playerBG.BBoxLeft+114",
+								"y": "ViewportBottom(\"select colors\")/2",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 956191658085379
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 598165636000091
+						},
+						{
+							"callFunction": "create colors icons to choose",
+							"sid": 724434408926676
+						},
+						{
+							"callFunction": "create reset button",
+							"sid": 569839930850154
+						},
+						{
+							"callFunction": "position preview",
+							"sid": 911242817408634
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "preview",
+							"sid": 380858104530867,
+							"disabled": true,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 787394596771033
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "This function create color icons for choose"
+		},
+		{
+			"functionName": "create colors icons to choose",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 380600170842967,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 170831192011821,
+							"parameters": {
+								"object": "playerBG"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 738826973273962,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 151192427820069,
+									"parameters": {
+										"count": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 113140436041077,
+									"parameters": {
+										"object-to-create": "color",
+										"layer": "\"select colors\"",
+										"x": "playerBG.X",
+										"y": "playerBG.Y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "color",
+									"sid": 637035317915981,
+									"parameters": {
+										"instance-variable": "Player",
+										"value": "int(Self.IID/4)+1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "color",
+									"sid": 521538626794019,
+									"parameters": {
+										"instance-variable": "color",
+										"value": "loopindex+1"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "color",
+									"sid": 535763793087748,
+									"parameters": {
+										"frame-number": "Self.color-1"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "color",
+									"sid": 580624845481622,
+									"parameters": {
+										"instance-variable": "pos",
+										"value": "loopindex"
+									}
+								},
+								{
+									"id": "set-y",
+									"objectClass": "color",
+									"sid": 570700856321759,
+									"parameters": {
+										"y": "Self.Y+40"
+									}
+								},
+								{
+									"id": "set-default-color",
+									"objectClass": "color",
+									"sid": 520088700372067,
+									"disabled": true,
+									"parameters": {
+										"color": "Dictionary.Get(\"color\"&Self.color)"
+									}
+								}
+							],
+							"sid": 254670865278648
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "Once a color is selected then this function will hide other colors for player"
+		},
+		{
+			"functionName": "hide unselected colors for currently picked player",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 975370162929253,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "color",
+							"sid": 205349679915013,
+							"parameters": {
+								"instance-variable": "Player",
+								"comparison": 0,
+								"value": "clicked_player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 550579675524283,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 604753229223316,
+									"parameters": {
+										"object": "color",
+										"expression": "color.color",
+										"comparison": 1,
+										"value": "color.color_selected"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "color",
+									"sid": 395651257563232,
+									"parameters": {
+										"opacity": "15"
+									}
+								}
+							],
+							"sid": 386105012328080
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "hide color for other player which is selected by current player"
+		},
+		{
+			"functionName": "hide selected color option from other players",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "color",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 642087551278552
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 672749365484063,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "color",
+							"sid": 754699997703125,
+							"parameters": {
+								"instance-variable": "Player",
+								"comparison": 1,
+								"value": "clicked_player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 113964137217373,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 455900241617178,
+									"parameters": {
+										"object": "color",
+										"expression": "color.color",
+										"comparison": 0,
+										"value": "color"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "color",
+									"sid": 413190855510223,
+									"parameters": {
+										"opacity": "15"
+									}
+								}
+							],
+							"sid": 723121581355787
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "creating reset button"
+		},
+		{
+			"functionName": "create reset button",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 974711642158793,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 551296225859844
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 817760572081885,
+							"parameters": {
+								"object-to-create": "ButtonReset",
+								"layer": "\"select colors\"",
+								"x": "0",
+								"y": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 791946190744468,
+							"parameters": {
+								"object-to-create": "reset",
+								"layer": "\"select colors\"",
+								"x": "0",
+								"y": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 617377879658914,
+							"parameters": {
+								"object-to-create": "BtnPlay",
+								"layer": "\"select colors\"",
+								"x": "0",
+								"y": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 153332883247273,
+							"parameters": {
+								"object-to-create": "btnPlaytxt",
+								"layer": "\"select colors\"",
+								"x": "0",
+								"y": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 452746535431771
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-last-created",
+							"objectClass": "System",
+							"sid": 978943516730697,
+							"parameters": {
+								"object": "playerBG"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 426632049086731
+						},
+						{
+							"id": "set-position",
+							"objectClass": "ludo",
+							"sid": 277300035914717,
+							"disabled": true,
+							"parameters": {
+								"x": "playerBG.X",
+								"y": "preview(1).BBoxTop/2"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "ButtonReset",
+							"sid": 200794336275940,
+							"parameters": {
+								"x": "playerBG.X-129",
+								"y": "playerBG.Y + 180"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "BtnPlay",
+							"sid": 550808475358366,
+							"parameters": {
+								"x": "playerBG.X+129",
+								"y": "playerBG.Y + 180"
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "btnPlaytxt",
+							"sid": 130292437001021,
+							"parameters": {
+								"object": "BtnPlay",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "back",
+							"sid": 768274316917682,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "back",
+							"sid": 796814263347165,
+							"parameters": {
+								"x": "playerBG.X",
+								"y": "ViewportBottom(0)-250"
+							}
+						}
+					],
+					"sid": 693335204812453,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "reset",
+									"sid": 287256214751629,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "reset",
+									"sid": 863482758853268,
+									"parameters": {
+										"object": "ButtonReset",
+										"image-point-optional": "0"
+									}
+								}
+							],
+							"sid": 911432341547498
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "This will reset colors of preview icons "
+		},
+		{
+			"functionName": "reset colors",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 740339289092501,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 401822196392281,
+							"parameters": {
+								"object": "color"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "color",
+							"sid": 536556454958706,
+							"parameters": {
+								"instance-variable": "color_selected",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "color",
+							"sid": 771232575037297,
+							"parameters": {
+								"opacity": "100"
+							}
+						}
+					],
+					"sid": 311666559488554
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 513826982848055,
+							"parameters": {
+								"object": "preview"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "preview",
+							"sid": 408287767146665,
+							"parameters": {
+								"frame-number": "Self.id-1"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "preview",
+							"sid": 418563148180140,
+							"parameters": {
+								"instance-variable": "color",
+								"value": "Self.id-1"
+							}
+						}
+					],
+					"sid": 173250430634633
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "this will position preview icons "
+		},
+		{
+			"functionName": "position preview",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 779680291319653,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 750488747890923,
+							"parameters": {
+								"variable": "players_mode",
+								"comparison": 0,
+								"value": "\"1,3\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "preview",
+							"sid": 603375258138836,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 218560087769016,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "preview",
+									"sid": 484687301681865,
+									"parameters": {
+										"x": "playerBG.BBoxRight +120",
+										"y": "preview.id = 1 ? playerBG(0).Y : preview.id = 3 ? playerBG(1).Y : playerBG(1).Y +500\n"
+									}
+								}
+							],
+							"sid": 570949412784311
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-evaluate",
+									"objectClass": "System",
+									"sid": 978640618123985,
+									"parameters": {
+										"object": "preview",
+										"expression": "preview.id = 2 | preview.id = 4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "preview",
+									"sid": 192759700027663,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 477743177906777
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 590014138986997,
+							"parameters": {
+								"variable": "players_mode",
+								"comparison": 0,
+								"value": "\"1,2,3\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "preview",
+							"sid": 245478439348656,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 923978698803780,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "preview",
+									"sid": 973025566569071,
+									"parameters": {
+										"x": "playerBG.BBoxRight +120",
+										"y": "preview.id = 1 ? playerBG(0).Y : preview.id = 2 ? playerBG(1).Y : preview.id = 3 ? playerBG(2).Y : playerBG(1).Y +500\n"
+									}
+								}
+							],
+							"sid": 165170072307297
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-evaluate",
+									"objectClass": "System",
+									"sid": 515700515621694,
+									"parameters": {
+										"object": "preview",
+										"expression": "preview.id = 4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "preview",
+									"sid": 734836288982629,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 224722466315164
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 364748895529887,
+							"parameters": {
+								"variable": "players_mode",
+								"comparison": 0,
+								"value": "\"1,2,3,4\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "preview",
+							"sid": 746153012429838,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 346505307119023,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "preview",
+									"sid": 424989952261915,
+									"parameters": {
+										"x": "playerBG.BBoxRight +120",
+										"y": "preview.id = 1 ? playerBG(0).Y : preview.id = 2 ? playerBG(1).Y : preview.id = 3 ? playerBG(2).Y : playerBG(3).Y\n"
+									}
+								}
+							],
+							"sid": 742244648981700
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 522116747698377,
+							"parameters": {
+								"object": "preview"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "spawn-another-object",
+							"objectClass": "preview",
+							"sid": 796080950105514,
+							"parameters": {
+								"object": "reset",
+								"layer": "\"select colors\"",
+								"image-point": "0",
+								"create-hierarchy": false
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "reset",
+							"sid": 695126479922066,
+							"parameters": {
+								"instance-variable": "id",
+								"value": "preview.id"
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "reset",
+							"sid": 887404934049651,
+							"parameters": {
+								"width": "preview.Width",
+								"height": "preview.Height"
+							}
+						},
+						{
+							"id": "set-font-size",
+							"objectClass": "reset",
+							"sid": 250901919066339,
+							"parameters": {
+								"size-pt": "40"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "reset",
+							"sid": 523451017318268,
+							"parameters": {
+								"text": "Self.id&\"p\""
+							}
+						},
+						{
+							"id": "set-font-color",
+							"objectClass": "reset",
+							"sid": 596489167784102,
+							"parameters": {
+								"color": "rgb(60,60,60)"
+							}
+						}
+					],
+					"sid": 846068748046294,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 889664855535309,
+									"parameters": {
+										"variable": "players_mode",
+										"comparison": 0,
+										"value": "\"1,3\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "reset",
+									"sid": 321094229159707,
+									"parameters": {
+										"text": "reset.id = 1 ? \"1\"&\"p\" : reset.id = 3 ? \"2\"&\"p\" : \"\""
+									}
+								}
+							],
+							"sid": 395358025932146
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 883114320926533,
+									"parameters": {
+										"variable": "players_mode",
+										"comparison": 0,
+										"value": "\"1,2,3\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "reset",
+									"sid": 678208834537106,
+									"parameters": {
+										"text": "reset.id = 4 ? \"\" : Self.id&\"p\""
+									}
+								}
+							],
+							"sid": 390056810534175
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "change colors of preview icons as per color picked by players"
+		},
+		{
+			"functionName": "coloring preview",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "uid",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 211482602361870
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 666060696924932,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "previous_player",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 740747952685097
+				},
+				{
+					"eventType": "variable",
+					"name": "previous_color",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 275908826919492
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "color",
+							"sid": 108290883122000,
+							"parameters": {
+								"unique-id": "uid"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 714733984616440,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "store the player N that was having this color before"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "preview",
+									"sid": 175863141479418,
+									"parameters": {
+										"instance-variable": "color",
+										"comparison": 0,
+										"value": "color.color"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 933955584611420,
+									"parameters": {
+										"variable": "previous_player",
+										"value": "preview.id"
+									}
+								}
+							],
+							"sid": 539762578443436
+						},
+						{
+							"eventType": "comment",
+							"text": "store the color that will be replaced from current player"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "preview",
+									"sid": 515372386260534,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "color.Player"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 810056960991348,
+									"parameters": {
+										"variable": "previous_color",
+										"value": "preview.color"
+									}
+								}
+							],
+							"sid": 485020220106402,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "assign new color to current player"
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-instvar-value",
+											"objectClass": "preview",
+											"sid": 772706637412602,
+											"parameters": {
+												"instance-variable": "color",
+												"value": "color.color"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "preview",
+											"sid": 345278921532215,
+											"parameters": {
+												"frame-number": "Self.color-1"
+											}
+										}
+									],
+									"sid": 957908861046314
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "assign to the old player the color that the current player was having before this change"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "preview",
+									"sid": 756959304116774,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "previous_player"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "preview",
+									"sid": 975039211779909,
+									"parameters": {
+										"instance-variable": "color",
+										"value": "previous_color"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "preview",
+									"sid": 804774846787596,
+									"parameters": {
+										"frame-number": "Self.color-1"
+									}
+								}
+							],
+							"sid": 428478663271327
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "startup",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 946572979920220,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 851925335320964,
+							"parameters": {
+								"layer": "\"select player\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 398085742277617,
+							"parameters": {
+								"variable": "current_Player",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 600888884231428,
+							"parameters": {
+								"variable": "index",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 941447825451935,
+							"parameters": {
+								"variable": "dice",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 249460386699325,
+							"parameters": {
+								"variable": "total_Six",
+								"value": "0"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "playerBG",
+							"sid": 317180479102467
+						},
+						{
+							"id": "destroy",
+							"objectClass": "BtnPlay",
+							"sid": 976016668978850
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TextInput",
+							"sid": 154869060126582
+						},
+						{
+							"id": "destroy",
+							"objectClass": "playerNames",
+							"sid": 954695875869556
+						},
+						{
+							"id": "destroy",
+							"objectClass": "color",
+							"sid": 175544007414056
+						},
+						{
+							"id": "destroy",
+							"objectClass": "ButtonReset",
+							"sid": 120940851756217
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "preview",
+							"sid": 127899278823050,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "back",
+							"sid": 482886744171145,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "reset",
+							"sid": 828438484709514
+						},
+						{
+							"id": "destroy",
+							"objectClass": "btnPlaytxt",
+							"sid": 308329175705815
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 377358862582468,
+							"parameters": {
+								"variable": "clicked_player",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 409311714875449
+				}
+			]
+		},
+		{
+			"functionName": "text input style",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 130413134375255,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 537479876102721,
+							"parameters": {
+								"object": "TextInput"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 411849472031592,
+							"parameters": {
+								"object": "TextInput"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 593929782513720,
+							"parameters": {
+								"property-name": "\"background-color\"",
+								"value": "\"rgb(40,40,40)\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 530680081051841,
+							"parameters": {
+								"property-name": "\"border\"",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 477621114666930,
+							"parameters": {
+								"property-name": "\"outline\"",
+								"value": "\"red\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 720214126234046,
+							"parameters": {
+								"property-name": "\"text-align\"",
+								"value": "\"center\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 150328745916061,
+							"parameters": {
+								"property-name": "\"font-size\"",
+								"value": "\"18px\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 120085433775883,
+							"parameters": {
+								"property-name": "\"font-weight\"",
+								"value": "\"600\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 577998099048505,
+							"parameters": {
+								"property-name": "\"border-radius\"",
+								"value": "\"10px\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 217266269619410,
+							"parameters": {
+								"property-name": "\"color\"",
+								"value": "Self.id = 1 ? \"rgb(255, 210, 34)\" : Self.id = 2 ? \"rgb(2, 162, 123)\" : Self.id = 3 ? \"rgb(230, 57, 60)\" : \"rgb(17, 138, 178)\""
+							}
+						}
+					],
+					"sid": 508620571317738,
+					"isOrBlock": true
+				}
+			]
+		},
+		{
+			"functionName": "text input hover style",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 717946039072084,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 616078745379643,
+							"parameters": {
+								"object": "TextInput"
+							}
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 970188411676621,
+							"parameters": {
+								"object": "TextInput"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-css-style",
+							"objectClass": "TextInput",
+							"sid": 664762011953432,
+							"parameters": {
+								"property-name": "\"background-color\"",
+								"value": "\"rgb(35,35,35)\""
+							}
+						}
+					],
+					"sid": 324087547423369,
+					"isOrBlock": true
+				}
+			]
+		}
+	],
+	"sid": 433136402879631
+}

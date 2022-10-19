@@ -1,0 +1,80 @@
+{
+	"name": "arrow",
+	"plugin-id": "Sprite",
+	"sid": 865184335131788,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 698614208167181
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 134,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\arrow-y.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6370595,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 134,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\arrow-g.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9048842,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 134,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\arrow-r.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4044109,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 134,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\arrow-b.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3006484,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 975701686972306,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

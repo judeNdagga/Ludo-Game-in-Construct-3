@@ -1,0 +1,37 @@
+{
+	"name": "ludo",
+	"plugin-id": "Sprite",
+	"sid": 385574299236187,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 804,
+						"height": 268,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\ludo.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5420881,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 688070848223183,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

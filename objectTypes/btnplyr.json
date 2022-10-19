@@ -1,0 +1,61 @@
+{
+	"name": "btnPlyr",
+	"plugin-id": "Sprite",
+	"sid": 886579427811364,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 544,
+						"height": 170,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Buttons\\Alerts\\close.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2198895,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 544,
+						"height": 170,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Buttons\\Alerts\\close.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7893814,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 544,
+						"height": 170,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Buttons\\Alerts\\close.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 191256,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 997608614778565,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

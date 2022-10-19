@@ -1,0 +1,57 @@
+{
+	"name": "back",
+	"plugin-id": "Sprite",
+	"sid": 723872815123485,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 179,
+						"height": 179,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Buttons\\back.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9928034,
+						"collisionPoly": {
+							"points": [
+								0.10614525139664804,
+								0.10614525139664804,
+								0.5,
+								0.0111731843575419,
+								0.888268156424581,
+								0.10614525139664804,
+								0.9888268156424581,
+								0.5,
+								0.888268156424581,
+								0.888268156424581,
+								0.5,
+								0.9888268156424581,
+								0.10614525139664804,
+								0.888268156424581,
+								0.00558659217877095,
+								0.5
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 461795921377654,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

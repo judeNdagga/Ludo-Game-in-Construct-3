@@ -1,0 +1,139 @@
+{
+	"name": "stop",
+	"plugin-id": "Sprite",
+	"sid": 882710256669471,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"sid": 712532419020061
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 135,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\star-y.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5462760,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 135,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\star-g.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2782689,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 135,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\star-r.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6240041,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 135,
+						"height": 134,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\star-b.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4304214,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 890789847362100,
+				"name": "stars",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 68,
+						"height": 68,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7284777,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 68,
+						"height": 68,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 1849535,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 68,
+						"height": 68,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6839274,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 68,
+						"height": 68,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 1068708,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 896635023536372,
+				"name": "stop",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

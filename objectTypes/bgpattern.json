@@ -1,0 +1,20 @@
+{
+	"name": "bgPattern",
+	"plugin-id": "TiledBg",
+	"sid": 829396103454513,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"image": {
+		"width": 20,
+		"height": 20,
+		"originX": 6.25,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 9496855,
+		"useCollisionPoly": true
+	}
+}

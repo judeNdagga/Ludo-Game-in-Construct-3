@@ -1,0 +1,203 @@
+{
+	"name": "eLogin",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "MyUserName",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 431707935976402
+		},
+		{
+			"eventType": "variable",
+			"name": "RoomName",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 456281553721915
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 401241827569721
+				}
+			],
+			"actions": [
+				{
+					"id": "set-focused",
+					"objectClass": "NameTextBox",
+					"sid": 151196052901403
+				}
+			],
+			"sid": 956342437841476
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-text-changed",
+					"objectClass": "NameTextBox",
+					"sid": 761248920478899
+				},
+				{
+					"id": "on-text-changed",
+					"objectClass": "RoomNameTextBox",
+					"sid": 750832680473912
+				}
+			],
+			"actions": [],
+			"sid": 580072807262179,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-text",
+							"objectClass": "NameTextBox",
+							"sid": 419428839632935,
+							"parameters": {
+								"text": "\"\"",
+								"case": "case-insensitive"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 121647735700692,
+							"parameters": {
+								"first-value": "len(RoomNameTextBox.Text)",
+								"comparison": 2,
+								"second-value": "5"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "JoinButton",
+							"sid": 294743485742939,
+							"parameters": {
+								"mode": "disabled"
+							}
+						}
+					],
+					"sid": 250306610588930,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 374547816403534
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "JoinButton",
+							"sid": 857259597457782,
+							"parameters": {
+								"mode": "enabled"
+							}
+						}
+					],
+					"sid": 373676352540916
+				}
+			],
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "JoinButton",
+					"sid": 628854784793212
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 609305637176860,
+					"parameters": {
+						"key": 13
+					}
+				}
+			],
+			"actions": [],
+			"sid": 239401249864829,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-text",
+							"objectClass": "NameTextBox",
+							"sid": 890947435374511,
+							"parameters": {
+								"text": "\"\"",
+								"case": "case-insensitive"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 289085808944973,
+							"parameters": {
+								"first-value": "len(RoomNameTextBox.Text)",
+								"comparison": 5,
+								"second-value": "5"
+							}
+						},
+						{
+							"id": "supports-multiplayer",
+							"objectClass": "Multiplayer",
+							"sid": 883281129637505
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 162829556934485,
+							"parameters": {
+								"variable": "MyUserName",
+								"value": "NameTextBox.Text"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 935820959396418,
+							"parameters": {
+								"variable": "RoomName",
+								"value": "RoomNameTextBox.Text"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 585824013379568,
+							"parameters": {
+								"layout": "Home"
+							}
+						}
+					],
+					"sid": 505401245569296
+				}
+			],
+			"isOrBlock": true
+		}
+	],
+	"sid": 549486220175144
+}

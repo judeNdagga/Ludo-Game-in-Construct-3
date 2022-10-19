@@ -1,0 +1,4649 @@
+{
+	"name": "eMain",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "players_mode",
+			"type": "string",
+			"initialValue": "1,2,3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 820749918273981
+		},
+		{
+			"eventType": "variable",
+			"name": "current_Player",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "current player",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 833231372913686
+		},
+		{
+			"eventType": "variable",
+			"name": "dice",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 992304705477906
+		},
+		{
+			"eventType": "variable",
+			"name": "six",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 360312081026839
+		},
+		{
+			"eventType": "variable",
+			"name": "total_Six",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 439685988883627
+		},
+		{
+			"eventType": "variable",
+			"name": "cut",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "when a token hit another player's token and send them back to home",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 907624252636291
+		},
+		{
+			"eventType": "variable",
+			"name": "index",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "increment from current player to next player",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 976391110009245
+		},
+		{
+			"eventType": "variable",
+			"name": "target_pos",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 724786702020793
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_NAME",
+			"type": "string",
+			"initialValue": "scirra-chatexample",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 509560355187287
+		},
+		{
+			"eventType": "variable",
+			"name": "winCount",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 940341759680806
+		},
+		{
+			"eventType": "variable",
+			"name": "PlayerTurn",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "Player's turn",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 154768323756568
+		},
+		{
+			"eventType": "variable",
+			"name": "INSTANCE_NAME",
+			"type": "string",
+			"initialValue": "default",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 664083742549183
+		},
+		{
+			"eventType": "variable",
+			"name": "GameState",
+			"type": "string",
+			"initialValue": "waiting",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 917150394867693
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Init",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 507133902634091
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "color customisation",
+							"sid": 910495041121424
+						},
+						{
+							"callFunction": "dice color",
+							"sid": 180242448616611
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 105541434262092,
+							"parameters": {
+								"variable": "winCount",
+								"value": "tokencount(players_mode,\",\")"
+							}
+						},
+						{
+							"id": "pin-to-object-properties",
+							"objectClass": "diceAnim",
+							"sid": 279627466876004,
+							"behaviorType": "Pin",
+							"parameters": {
+								"pin-to": "dice",
+								"x": true,
+								"y": true,
+								"angle": false,
+								"width-type": "no",
+								"height-type": "no",
+								"z": false
+							}
+						},
+						{
+							"id": "stop-animation",
+							"objectClass": "diceAnim",
+							"sid": 249963950625729
+						},
+						{
+							"id": "set-size",
+							"objectClass": "bgPattern",
+							"sid": 201158605143803,
+							"parameters": {
+								"width": "ViewportRight(0)",
+								"height": "ViewportBottom(0)"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "bgPattern",
+							"sid": 277455807947790,
+							"parameters": {
+								"x": "0",
+								"y": "0"
+							}
+						},
+						{
+							"id": "set-x",
+							"objectClass": "ludo",
+							"sid": 941296741184561,
+							"disabled": true,
+							"parameters": {
+								"x": "ViewportRight(0)/2"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "pinning popup object on startup"
+						},
+						{
+							"callFunction": "pin popups",
+							"sid": 645560613378312
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "ChatLog",
+							"sid": 323293035432249,
+							"parameters": {
+								"property-name": "\"font-size\"",
+								"value": "\"0.8em\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "ChatTextBox",
+							"sid": 520610039101123,
+							"parameters": {
+								"property-name": "\"font-size\"",
+								"value": "\"0.8em\""
+							}
+						},
+						{
+							"id": "set-css-style",
+							"objectClass": "PeerList",
+							"sid": 757524771595584,
+							"parameters": {
+								"property-name": "\"font-size\"",
+								"value": "\"0.8em\""
+							}
+						}
+					],
+					"sid": 747315729516309,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 455360460168674,
+									"parameters": {
+										"variable": "players_mode",
+										"comparison": 0,
+										"value": "\"1,3\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 929417930405777,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-evaluate",
+											"objectClass": "System",
+											"sid": 840766793158021,
+											"parameters": {
+												"object": "tokens",
+												"expression": "tokens.player = 2 | tokens.player = 4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "playerText",
+											"sid": 130464508841803,
+											"parameters": {
+												"text": "playerText.id = 1 ? storeData.At(4) : playerText.id = 3 ? storeData.At(5) : \"\""
+											}
+										},
+										{
+											"id": "set-visible",
+											"objectClass": "tokens",
+											"sid": 747820309996210,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										},
+										{
+											"id": "sync-object",
+											"objectClass": "Multiplayer",
+											"sid": 525391705355167,
+											"parameters": {
+												"object": "tokens",
+												"data": "position-only",
+												"precision": "low-int16-2-bytes",
+												"bandwidth": "normal-bandwidth-unpredictable"
+											}
+										}
+									],
+									"sid": 948393543190282
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 802735169243323,
+									"parameters": {
+										"variable": "players_mode",
+										"comparison": 0,
+										"value": "\"1,2,3\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 582193806529193,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-evaluate",
+											"objectClass": "System",
+											"sid": 144322246395561,
+											"parameters": {
+												"object": "tokens",
+												"expression": "tokens.player = 4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "playerText",
+											"sid": 586459923010161,
+											"parameters": {
+												"text": "playerText.id = 4 ? \"\" : storeData.At(Self.id+3)"
+											}
+										},
+										{
+											"id": "set-visible",
+											"objectClass": "tokens",
+											"sid": 714247962984865,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										},
+										{
+											"id": "sync-object",
+											"objectClass": "Multiplayer",
+											"sid": 725683817552763,
+											"parameters": {
+												"object": "tokens",
+												"data": "position-only",
+												"precision": "low-int16-2-bytes",
+												"bandwidth": "normal-bandwidth-unpredictable"
+											}
+										}
+									],
+									"sid": 257101262800252
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 848044529373937,
+									"parameters": {
+										"variable": "players_mode",
+										"comparison": 0,
+										"value": "\"1,2,3,4\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 174251425028981,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 216123349473014,
+											"parameters": {
+												"object": "tokens"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "playerText",
+											"sid": 357305220999524,
+											"parameters": {
+												"text": "playerText.id = 1 ? storeData.At(4) : playerText.id = 2 ? storeData.At(5) : playerText.id = 3 ? storeData.At(6) : playerText.id = 4 ? storeData.At(7) : \"\""
+											}
+										}
+									],
+									"sid": 207832041076670
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 871357538036925
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "dice positions",
+			"description": "updating dice position ",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 779023047804266,
+							"parameters": {
+								"variable": "current_Player",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "dice",
+							"sid": 810073076166518,
+							"parameters": {
+								"x": "102",
+								"y": "1632"
+							}
+						}
+					],
+					"sid": 480142948818954
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 233895563700252,
+							"parameters": {
+								"variable": "current_Player",
+								"comparison": 0,
+								"value": "2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "dice",
+							"sid": 408188142599461,
+							"parameters": {
+								"x": "102",
+								"y": "476"
+							}
+						}
+					],
+					"sid": 577926333559938
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 177743533967021,
+							"parameters": {
+								"variable": "current_Player",
+								"comparison": 0,
+								"value": "3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "dice",
+							"sid": 411222549079567,
+							"parameters": {
+								"x": "986",
+								"y": "476"
+							}
+						}
+					],
+					"sid": 398816574482354
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 918499456302233,
+							"parameters": {
+								"variable": "current_Player",
+								"comparison": 0,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "dice",
+							"sid": 280849165791971,
+							"parameters": {
+								"x": "986",
+								"y": "1632"
+							}
+						}
+					],
+					"sid": 621977796005824
+				}
+			],
+			"sid": 216473062091115
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Unlock and move tokens",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 727695889233338,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "tokens"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 505379951477384,
+							"parameters": {
+								"object": "tokens"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 975423431216042,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 358463636475434,
+									"parameters": {
+										"instance-variable": "player",
+										"comparison": 0,
+										"value": "current_Player"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 453419065006633,
+							"children": [
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "open",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "open token when dice number is 6"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 796207092705743,
+													"parameters": {
+														"variable": "dice",
+														"comparison": 0,
+														"value": "6"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "tokens",
+													"sid": 777891401880709,
+													"parameters": {
+														"instance-variable": "status",
+														"comparison": 0,
+														"value": "\"out\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 246171954223317,
+													"parameters": {
+														"variable": "dice",
+														"value": "0"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "tokens",
+													"sid": 522581697172320,
+													"parameters": {
+														"instance-variable": "pos",
+														"value": "1"
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "tokens",
+													"sid": 662883256227586,
+													"parameters": {
+														"instance-variable": "status",
+														"value": "\"in\""
+													}
+												}
+											],
+											"sid": 106370197525069
+										},
+										{
+											"eventType": "comment",
+											"text": "once token is ON then move it to the starting point"
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "tokens",
+													"sid": 216622917643643,
+													"parameters": {
+														"instance-variable": "status",
+														"comparison": 0,
+														"value": "\"in\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 413302635924240,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-evaluate",
+															"objectClass": "System",
+															"sid": 702817167483994,
+															"parameters": {
+																"object": "track",
+																"expression": "current_Player=1 ? track.yellow=tokens.pos : \ncurrent_Player=2 ? track.green=tokens.pos : \ncurrent_Player=3 ? track.red=tokens.pos :\ncurrent_Player=4 ? track.blue=tokens.pos : tokens.pos"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "move-to-object",
+															"objectClass": "tokens",
+															"sid": 835598098880057,
+															"behaviorType": "MoveTo",
+															"parameters": {
+																"object": "track",
+																"image-point": "0",
+																"mode": "direct"
+															}
+														},
+														{
+															"id": "set-instvar-value",
+															"objectClass": "tokens",
+															"sid": 514610023371807,
+															"parameters": {
+																"instance-variable": "status",
+																"value": "\"playing\""
+															}
+														}
+													],
+													"sid": 178820954906174
+												}
+											]
+										}
+									],
+									"sid": 977807532893030
+								},
+								{
+									"eventType": "group",
+									"disabled": false,
+									"title": "move",
+									"description": "",
+									"isActiveOnStart": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 438935273954636,
+													"parameters": {
+														"first-value": "tokens.pos+ dice ",
+														"comparison": 3,
+														"second-value": "57"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-top",
+													"objectClass": "tokens",
+													"sid": 697362857371674
+												}
+											],
+											"sid": 834725953934836,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "tokens",
+															"sid": 253242591537254,
+															"parameters": {
+																"instance-variable": "status",
+																"comparison": 0,
+																"value": "\"playing\""
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "tokens",
+															"sid": 831887110013739,
+															"parameters": {
+																"instance-variable": "status",
+																"comparison": 0,
+																"value": "\"inside\""
+															}
+														}
+													],
+													"actions": [],
+													"sid": 521008321101815,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "pick-topbottom",
+																	"objectClass": "tokens",
+																	"sid": 422289594721538,
+																	"parameters": {
+																		"which": "top"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "when a token is clicked then set its destination So we can move token one by one on each track"
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 909606297211335,
+																	"parameters": {
+																		"variable": "target_pos",
+																		"value": "tokens.pos+ dice <= 57 ? tokens.pos+ dice : tokens.pos"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "tokens",
+																	"sid": 934549808844058,
+																	"parameters": {
+																		"instance-variable": "canMove",
+																		"value": "true"
+																	}
+																}
+															],
+															"sid": 385922015005771
+														}
+													],
+													"isOrBlock": true
+												}
+											]
+										}
+									],
+									"sid": 201422667729214
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "tokens",
+							"sid": 976923526586131,
+							"parameters": {
+								"instance-variable": "canMove"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 551757382605948,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 449348221981080,
+									"parameters": {
+										"instance-variable": "pos",
+										"comparison": 2,
+										"value": "target_pos"
+									}
+								},
+								{
+									"id": "every-x-seconds",
+									"objectClass": "System",
+									"sid": 937644725093624,
+									"parameters": {
+										"interval-seconds": "0.2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "tokens",
+									"sid": 914748127508398,
+									"parameters": {
+										"instance-variable": "pos",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 691414836680030,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-evaluate",
+											"objectClass": "System",
+											"sid": 994611457468528,
+											"parameters": {
+												"object": "track",
+												"expression": "current_Player=1 ? track.yellow=tokens.pos : \r\ncurrent_Player=2 ? track.green=tokens.pos : \r\ncurrent_Player=3 ? track.red=tokens.pos :\r\ncurrent_Player=4 ? track.blue=tokens.pos : tokens.pos"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "move-to-object",
+											"objectClass": "tokens",
+											"sid": 987141629256204,
+											"behaviorType": "MoveTo",
+											"parameters": {
+												"object": "track",
+												"image-point": "0",
+												"mode": "add-waypoint"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 474897354430761,
+											"parameters": {
+												"variable": "dice",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "tokens",
+											"sid": 819055203728961,
+											"parameters": {
+												"instance-variable": "isMoving",
+												"value": "true"
+											}
+										},
+										{
+											"id": "wait-for-signal",
+											"objectClass": "System",
+											"sid": 852461837575882,
+											"parameters": {
+												"tag": "\"stopped\""
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "tokens",
+											"sid": 513875548611712,
+											"parameters": {
+												"instance-variable": "isMoving",
+												"value": "false"
+											}
+										}
+									],
+									"sid": 689331585394676
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "Once token's position reached its destination then stop moving"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "tokens",
+							"sid": 423720697286387,
+							"parameters": {
+								"instance-variable": "pos",
+								"comparison": 0,
+								"value": "target_pos"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "tokens",
+							"sid": 809989285762969,
+							"parameters": {
+								"instance-variable": "canMove",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 804418320405388
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-arrived",
+							"objectClass": "tokens",
+							"sid": 333226476590367,
+							"behaviorType": "MoveTo"
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "tokens",
+							"sid": 319654964542424,
+							"parameters": {
+								"instance-variable": "pos",
+								"comparison": 4,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 301671860997820,
+							"parameters": {
+								"audio-file": "jump",
+								"loop": "not-looping",
+								"volume": "0",
+								"tag-optional": "\"jump\""
+							}
+						},
+						{
+							"id": "set-volume",
+							"objectClass": "Audio",
+							"sid": 334714298276165,
+							"parameters": {
+								"tag": "\"jump\"",
+								"db": "-10"
+							}
+						}
+					],
+					"sid": 207440217172186
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-moving",
+							"objectClass": "tokens",
+							"sid": 651905532049443,
+							"behaviorType": "MoveTo"
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "tokens",
+							"sid": 836151112021316,
+							"parameters": {
+								"instance-variable": "isMoving"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "we don't want to collide token with other player's token when it is moving So its disabled"
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "tokens",
+							"sid": 654576331048711,
+							"parameters": {
+								"collisions": "disabled"
+							}
+						}
+					],
+					"sid": 890180472084672
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-moving",
+							"objectClass": "tokens",
+							"sid": 144460536659220,
+							"behaviorType": "MoveTo",
+							"isInverted": true
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "tokens",
+							"sid": 478694049524226,
+							"parameters": {
+								"instance-variable": "isMoving"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Once it reaches its destination then then enable collision detection again"
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "tokens",
+							"sid": 750612871716698,
+							"parameters": {
+								"collisions": "enabled"
+							}
+						}
+					],
+					"sid": 680280074989191
+				}
+			],
+			"sid": 266563792629408
+		},
+		{
+			"eventType": "comment",
+			"text": "New issue is When Token reached to Win and chance one more roll then next player Turn Skipped to another player"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "dice",
+			"description": "On rice rolled",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 967262329009539,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "dice"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 975361614036502,
+							"parameters": {
+								"object": "dice"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 690879274756887,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-on-screen",
+									"objectClass": "popBG",
+									"sid": 498384313494845,
+									"isInverted": true
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 158915870527396,
+									"parameters": {
+										"variable": "dice",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 805491654914993,
+									"parameters": {
+										"variable": "dice",
+										"value": "choose(1,2,3,4,5,6)"
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 859578381049533,
+									"parameters": {
+										"audio-file": "Dice Roll",
+										"loop": "not-looping",
+										"volume": "0",
+										"tag-optional": "\"dice\""
+									}
+								},
+								{
+									"id": "set-volume",
+									"objectClass": "Audio",
+									"sid": 901893873676643,
+									"parameters": {
+										"tag": "\"dice\"",
+										"db": "-10"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "dice",
+									"sid": 552575335501649,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "diceAnim",
+									"sid": 207221824401005,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "start-animation",
+									"objectClass": "diceAnim",
+									"sid": 562544067142691,
+									"parameters": {
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 396887658052692,
+									"parameters": {
+										"seconds": "0.3"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "diceAnim",
+									"sid": 532183522482699,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "dice",
+									"sid": 275702320612547,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "dice",
+									"sid": 865334933633082,
+									"parameters": {
+										"frame-number": "dice"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 332367011192498,
+									"parameters": {
+										"variable": "cut",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 663147711592654,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "move current player to top"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 549642210157907,
+											"parameters": {
+												"object": "tokens",
+												"expression": "tokens.player",
+												"comparison": 0,
+												"value": "current_Player"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "move-to-top",
+											"objectClass": "tokens",
+											"sid": 947644886310650
+										}
+									],
+									"sid": 908429807077813
+								},
+								{
+									"eventType": "comment",
+									"text": "[h4]When dice didn't get 6 number then we can do following things[/h4]\n1) move token if its Unlock\n2) "
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 814076317871597,
+											"parameters": {
+												"variable": "dice",
+												"comparison": 1,
+												"value": "6"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 333191370268536,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 790386721155957,
+													"parameters": {
+														"object": "tokens",
+														"expression": "tokens.player",
+														"comparison": 0,
+														"value": "current_Player"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 534818779564827,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 564375309642633,
+															"parameters": {
+																"object": "tokens",
+																"expression": "tokens.pos + dice",
+																"comparison": 3,
+																"value": "57"
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "tokens",
+															"sid": 670615801348935,
+															"parameters": {
+																"instance-variable": "status",
+																"comparison": 1,
+																"value": "\"out\""
+															}
+														}
+													],
+													"actions": [],
+													"sid": 693154375991781,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 790371612769721,
+																	"parameters": {
+																		"first-value": "tokens.PickedCount",
+																		"comparison": 0,
+																		"second-value": "1"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"type": "comment",
+																	"text": "when a token is clicked then set its destination So we can move token one by one on each track"
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 754554945606798,
+																	"parameters": {
+																		"variable": "target_pos",
+																		"value": "tokens.pos+ dice <= 57 ? tokens.pos+ dice : tokens.pos"
+																	}
+																},
+																{
+																	"id": "set-boolean-instvar",
+																	"objectClass": "tokens",
+																	"sid": 225460267638771,
+																	"parameters": {
+																		"instance-variable": "canMove",
+																		"value": "true"
+																	}
+																},
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "tokens",
+																	"sid": 313855701480852,
+																	"disabled": true,
+																	"parameters": {
+																		"instance-variable": "pos",
+																		"value": "tokens.pos+ dice <= 57 ? tokens.pos+ dice : tokens.pos"
+																	}
+																}
+															],
+															"sid": 832270503630783
+														}
+													]
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 972143676090685,
+													"parameters": {
+														"object": "tokens",
+														"expression": "tokens.player",
+														"comparison": 0,
+														"value": "current_Player"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 374718001357507,
+											"children": [
+												{
+													"eventType": "comment",
+													"text": "is playing and inside"
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 568017312200270,
+															"parameters": {
+																"object": "tokens",
+																"expression": "tokens.pos + dice ",
+																"comparison": 3,
+																"value": "57"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 904905882998816,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "tokens",
+																	"sid": 448733780647716,
+																	"parameters": {
+																		"instance-variable": "status",
+																		"comparison": 0,
+																		"value": "\"playing\""
+																	}
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "tokens",
+																	"sid": 542573231473131,
+																	"parameters": {
+																		"instance-variable": "status",
+																		"comparison": 0,
+																		"value": "\"inside\""
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "wait-for-signal",
+																	"objectClass": "System",
+																	"sid": 472085351847421,
+																	"parameters": {
+																		"tag": "\"move\""
+																	}
+																},
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 156386226398007,
+																	"parameters": {
+																		"seconds": "0.2"
+																	}
+																}
+															],
+															"sid": 668590077174300,
+															"children": [
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "compare-eventvar",
+																			"objectClass": "System",
+																			"sid": 343713932998245,
+																			"parameters": {
+																				"variable": "cut",
+																				"comparison": 0,
+																				"value": "1"
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 124183757449131,
+																			"parameters": {
+																				"variable": "total_Six",
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 849596952128470,
+																			"parameters": {
+																				"variable": "dice",
+																				"value": "0"
+																			}
+																		}
+																	],
+																	"sid": 229615794385534
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 558957505463285
+																		},
+																		{
+																			"id": "compare-instance-variable",
+																			"objectClass": "tokens",
+																			"sid": 124657739542811,
+																			"parameters": {
+																				"instance-variable": "status",
+																				"comparison": 0,
+																				"value": "\"win\""
+																			}
+																		}
+																	],
+																	"actions": [
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 542460903298376,
+																			"parameters": {
+																				"variable": "total_Six",
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 887943463900783,
+																			"parameters": {
+																				"variable": "dice",
+																				"value": "0"
+																			}
+																		}
+																	],
+																	"sid": 116455736473582,
+																	"children": [
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "compare-two-values",
+																					"objectClass": "System",
+																					"sid": 144258970873372,
+																					"parameters": {
+																						"first-value": "Functions.WinPlayer",
+																						"comparison": 0,
+																						"second-value": "4"
+																					}
+																				}
+																			],
+																			"actions": [],
+																			"sid": 467482462717520,
+																			"children": [
+																				{
+																					"eventType": "block",
+																					"conditions": [
+																						{
+																							"id": "pick-by-comparison",
+																							"objectClass": "System",
+																							"sid": 138148281622822,
+																							"parameters": {
+																								"object": "win",
+																								"expression": "win.id",
+																								"comparison": 0,
+																								"value": "current_Player"
+																							}
+																						}
+																					],
+																					"actions": [
+																						{
+																							"id": "set-visible",
+																							"objectClass": "win",
+																							"sid": 437177423516642,
+																							"parameters": {
+																								"visibility": "visible"
+																							}
+																						},
+																						{
+																							"callFunction": "next",
+																							"sid": 918025195940357
+																						},
+																						{
+																							"id": "subtract-from-eventvar",
+																							"objectClass": "System",
+																							"sid": 819174624728875,
+																							"parameters": {
+																								"variable": "winCount",
+																								"value": "1"
+																							}
+																						}
+																					],
+																					"sid": 648592397531259
+																				},
+																				{
+																					"eventType": "block",
+																					"conditions": [
+																						{
+																							"id": "compare-eventvar",
+																							"objectClass": "System",
+																							"sid": 109927976121121,
+																							"parameters": {
+																								"variable": "winCount",
+																								"comparison": 0,
+																								"value": "1"
+																							}
+																						}
+																					],
+																					"actions": [],
+																					"sid": 799006960053903,
+																					"children": [
+																						{
+																							"eventType": "block",
+																							"conditions": [
+																								{
+																									"id": "pick-by-unique-id",
+																									"objectClass": "popBG",
+																									"sid": 894176814037971,
+																									"parameters": {
+																										"unique-id": "170"
+																									}
+																								}
+																							],
+																							"actions": [
+																								{
+																									"id": "wait",
+																									"objectClass": "System",
+																									"sid": 530645555195879,
+																									"parameters": {
+																										"seconds": "0.5"
+																									}
+																								},
+																								{
+																									"id": "tween-one-property",
+																									"objectClass": "popBG",
+																									"sid": 784428500021236,
+																									"behaviorType": "Tween",
+																									"parameters": {
+																										"tags": "\"pop-play-in\"",
+																										"property": "offsetY",
+																										"end-value": "ViewportBottom(0)/2",
+																										"time": "0.5",
+																										"ease": "easeoutback",
+																										"destroy-on-complete": "no",
+																										"loop": "no",
+																										"ping-pong": "no"
+																									}
+																								},
+																								{
+																									"id": "tween-one-property",
+																									"objectClass": "bgPattern2",
+																									"sid": 327613820417667,
+																									"behaviorType": "Tween",
+																									"parameters": {
+																										"tags": "\"\"",
+																										"property": "offsetOpacity",
+																										"end-value": "80",
+																										"time": "0.5",
+																										"ease": "easeoutback",
+																										"destroy-on-complete": "no",
+																										"loop": "no",
+																										"ping-pong": "no"
+																									}
+																								}
+																							],
+																							"sid": 941209426079137
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"eventType": "block",
+																			"conditions": [
+																				{
+																					"id": "else",
+																					"objectClass": "System",
+																					"sid": 933709174030483
+																				}
+																			],
+																			"actions": [
+																				{
+																					"id": "set-eventvar-value",
+																					"objectClass": "System",
+																					"sid": 295219493918256,
+																					"parameters": {
+																						"variable": "dice",
+																						"value": "0"
+																					}
+																				},
+																				{
+																					"id": "set-eventvar-value",
+																					"objectClass": "System",
+																					"sid": 146369195472723,
+																					"parameters": {
+																						"variable": "cut",
+																						"value": "1"
+																					}
+																				}
+																			],
+																			"sid": 637468048513442
+																		}
+																	]
+																},
+																{
+																	"eventType": "block",
+																	"conditions": [
+																		{
+																			"id": "else",
+																			"objectClass": "System",
+																			"sid": 403850274448190
+																		}
+																	],
+																	"actions": [
+																		{
+																			"callFunction": "next",
+																			"sid": 305938433412991
+																		},
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 171329459148787,
+																			"parameters": {
+																				"variable": "total_Six",
+																				"value": "0"
+																			}
+																		},
+																		{
+																			"id": "set-eventvar-value",
+																			"objectClass": "System",
+																			"sid": 181815732052043,
+																			"parameters": {
+																				"variable": "dice",
+																				"value": "0"
+																			}
+																		}
+																	],
+																	"sid": 843223505538173
+																}
+															],
+															"isOrBlock": true
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 854053183154523
+																},
+																{
+																	"id": "compare-instance-variable",
+																	"objectClass": "tokens",
+																	"sid": 365145368278351,
+																	"parameters": {
+																		"instance-variable": "status",
+																		"comparison": 0,
+																		"value": "\"out\""
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "wait",
+																	"objectClass": "System",
+																	"sid": 813620571155623,
+																	"parameters": {
+																		"seconds": "0.2"
+																	}
+																},
+																{
+																	"callFunction": "next",
+																	"sid": 543597259490703
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 963064770008320,
+																	"parameters": {
+																		"variable": "total_Six",
+																		"value": "0"
+																	}
+																},
+																{
+																	"id": "set-eventvar-value",
+																	"objectClass": "System",
+																	"sid": 294638038884928,
+																	"parameters": {
+																		"variable": "dice",
+																		"value": "0"
+																	}
+																}
+															],
+															"sid": 391913994446420
+														}
+													]
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 626369653648076
+														}
+													],
+													"actions": [
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 138865941939411,
+															"parameters": {
+																"seconds": "0.2"
+															}
+														},
+														{
+															"callFunction": "next",
+															"sid": 614205366104070
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 290528799709428,
+															"parameters": {
+																"variable": "total_Six",
+																"value": "0"
+															}
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 738075672196269,
+															"parameters": {
+																"variable": "dice",
+																"value": "0"
+															}
+														}
+													],
+													"sid": 351341861510061
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "if we get dice number 6 one time or two time then we get one more change to play"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 629977881104856,
+											"parameters": {
+												"variable": "total_Six",
+												"comparison": 3,
+												"value": "2"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 660454805757028,
+											"parameters": {
+												"variable": "dice",
+												"comparison": 0,
+												"value": "6"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 851028476565470,
+											"parameters": {
+												"variable": "total_Six",
+												"value": "1"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 293513826114868,
+											"parameters": {
+												"variable": "cut",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 927237234822307,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 819903188913625,
+													"parameters": {
+														"object": "tokens",
+														"expression": "tokens.player",
+														"comparison": 0,
+														"value": "current_Player"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 603736332449988,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "tokens",
+															"sid": 647350302388440,
+															"parameters": {
+																"instance-variable": "status",
+																"comparison": 1,
+																"value": "\"playing\""
+															}
+														},
+														{
+															"id": "compare-instance-variable",
+															"objectClass": "tokens",
+															"sid": 547922211445390,
+															"parameters": {
+																"instance-variable": "status",
+																"comparison": 1,
+																"value": "\"out\""
+															}
+														},
+														{
+															"id": "compare-two-values",
+															"objectClass": "System",
+															"sid": 469713682117784,
+															"parameters": {
+																"first-value": "tokens.PickedCount",
+																"comparison": 0,
+																"second-value": "4"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "wait",
+															"objectClass": "System",
+															"sid": 760332027846919,
+															"parameters": {
+																"seconds": "0.2"
+															}
+														},
+														{
+															"callFunction": "next",
+															"sid": 391286239003909
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 778459117809226,
+															"parameters": {
+																"variable": "total_Six",
+																"value": "0"
+															}
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 986159264349123,
+															"parameters": {
+																"variable": "dice",
+																"value": "0"
+															}
+														}
+													],
+													"sid": 833141948703433
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "comment",
+									"text": "if we get 6 total three times then we can't move token and go for next player's turn"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 333762263360389,
+											"parameters": {
+												"variable": "total_Six",
+												"comparison": 5,
+												"value": "3"
+											}
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 253771604807829,
+											"parameters": {
+												"variable": "dice",
+												"comparison": 0,
+												"value": "6"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 237173730459042,
+											"parameters": {
+												"variable": "total_Six",
+												"value": "0"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 852672590947657,
+											"parameters": {
+												"seconds": "0.2"
+											}
+										},
+										{
+											"callFunction": "next",
+											"sid": 768091472039544
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 741712464518157,
+											"parameters": {
+												"variable": "dice",
+												"value": "0"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 505101537876271,
+											"parameters": {
+												"variable": "cut",
+												"value": "0"
+											}
+										}
+									],
+									"sid": 765932611718071
+								}
+							]
+						}
+					],
+					"isOrBlock": true
+				}
+			],
+			"sid": 956500391175289
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "collission",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "tokens",
+							"sid": 905826794022598,
+							"parameters": {
+								"object": "token"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "token",
+							"sid": 508603312308383,
+							"parameters": {
+								"object": "stop"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "tokens",
+							"sid": 329725023278605,
+							"parameters": {
+								"instance-variable": "player",
+								"comparison": 0,
+								"value": "current_Player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 610020753438502,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "if current player is not collided with double players on same position"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 245394318318226,
+									"parameters": {
+										"first-value": "Functions.collide_with_double_player(tokens.pos)",
+										"comparison": 1,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "token",
+									"sid": 969926118918600,
+									"parameters": {
+										"instance-variable": "status",
+										"value": "\"out\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "token",
+									"sid": 184112563797565,
+									"parameters": {
+										"instance-variable": "pos",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 623916526678097,
+									"parameters": {
+										"variable": "cut",
+										"value": "1"
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 351481719576351,
+									"parameters": {
+										"audio-file": "loose",
+										"loop": "not-looping",
+										"volume": "0",
+										"tag-optional": "\"loose\""
+									}
+								},
+								{
+									"id": "set-volume",
+									"objectClass": "Audio",
+									"sid": 674426173760197,
+									"parameters": {
+										"tag": "\"loose\"",
+										"db": "-10"
+									}
+								}
+							],
+							"sid": 266085835789590,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "sending back to home"
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "token",
+											"sid": 967428472931467,
+											"parameters": {
+												"instance-variable": "player",
+												"comparison": 0,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 800877796768616,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-evaluate",
+													"objectClass": "System",
+													"sid": 520494291175221,
+													"parameters": {
+														"object": "tokenBG2",
+														"expression": "tokenBG2.id = token.player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-object",
+													"objectClass": "token",
+													"sid": 555452952849226,
+													"behaviorType": "MoveTo",
+													"parameters": {
+														"object": "tokenBG2",
+														"image-point": "Self.id",
+														"mode": "direct"
+													}
+												}
+											],
+											"sid": 103778828316978
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "token",
+											"sid": 357679229370953,
+											"parameters": {
+												"instance-variable": "player",
+												"comparison": 0,
+												"value": "2"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 931355984119452,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-evaluate",
+													"objectClass": "System",
+													"sid": 748177991112704,
+													"parameters": {
+														"object": "tokenBG2",
+														"expression": "tokenBG2.id = token.player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-object",
+													"objectClass": "token",
+													"sid": 531035959028938,
+													"behaviorType": "MoveTo",
+													"parameters": {
+														"object": "tokenBG2",
+														"image-point": "Self.id",
+														"mode": "direct"
+													}
+												}
+											],
+											"sid": 185304528599037
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "token",
+											"sid": 442602878033774,
+											"parameters": {
+												"instance-variable": "player",
+												"comparison": 0,
+												"value": "3"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 787213382163959,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-evaluate",
+													"objectClass": "System",
+													"sid": 761452328849049,
+													"parameters": {
+														"object": "tokenBG2",
+														"expression": "tokenBG2.id = token.player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-object",
+													"objectClass": "token",
+													"sid": 298760740571471,
+													"behaviorType": "MoveTo",
+													"parameters": {
+														"object": "tokenBG2",
+														"image-point": "Self.id",
+														"mode": "direct"
+													}
+												}
+											],
+											"sid": 943019478650921
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "token",
+											"sid": 326628107845095,
+											"parameters": {
+												"instance-variable": "player",
+												"comparison": 0,
+												"value": "4"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 812243975380174,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-evaluate",
+													"objectClass": "System",
+													"sid": 147467050742422,
+													"parameters": {
+														"object": "tokenBG2",
+														"expression": "tokenBG2.id = token.player"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "move-to-object",
+													"objectClass": "token",
+													"sid": 530440689220989,
+													"behaviorType": "MoveTo",
+													"parameters": {
+														"object": "tokenBG2",
+														"image-point": "Self.id",
+														"mode": "direct"
+													}
+												}
+											],
+											"sid": 103304764211454
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-arrived",
+							"objectClass": "tokens",
+							"sid": 139644826720178,
+							"behaviorType": "MoveTo"
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "tokens",
+							"sid": 191458474099448,
+							"parameters": {
+								"instance-variable": "pos",
+								"comparison": 0,
+								"value": "target_pos"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 751713049870404,
+							"disabled": true,
+							"parameters": {
+								"seconds": "0.3"
+							}
+						}
+					],
+					"sid": 195847565584857,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 598065339609616,
+									"parameters": {
+										"instance-variable": "pos",
+										"comparison": 5,
+										"value": "52"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "on arrived if token is on \"inside\" track then change token status to \"inside\""
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "tokens",
+									"sid": 638517714616206,
+									"parameters": {
+										"instance-variable": "status",
+										"value": "\"inside\""
+									}
+								},
+								{
+									"id": "signal",
+									"objectClass": "System",
+									"sid": 428904778252358,
+									"parameters": {
+										"tag": "\"move\""
+									}
+								}
+							],
+							"sid": 459009795204146
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 152186109183738,
+									"parameters": {
+										"instance-variable": "pos",
+										"comparison": 0,
+										"value": "57"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "on arrived if token is on \"Win\" position then change token status to \"win\""
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "tokens",
+									"sid": 542750348015301,
+									"parameters": {
+										"instance-variable": "status",
+										"value": "\"win\""
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 564560244104076,
+									"parameters": {
+										"audio-file": "win",
+										"loop": "not-looping",
+										"volume": "0",
+										"tag-optional": "\"win\""
+									}
+								},
+								{
+									"id": "set-volume",
+									"objectClass": "Audio",
+									"sid": 571676471089635,
+									"parameters": {
+										"tag": "\"win\"",
+										"db": "-10"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 495994614993626,
+									"parameters": {
+										"variable": "total_Six",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 395462178256337
+						},
+						{
+							"eventType": "comment",
+							"text": "when token is arrived to its destination and token's position is less than Win position then send signal \"move\""
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 679545798678947,
+									"parameters": {
+										"instance-variable": "pos",
+										"comparison": 2,
+										"value": "57"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "signal",
+									"objectClass": "System",
+									"sid": 293982628721901,
+									"parameters": {
+										"tag": "\"move\""
+									}
+								}
+							],
+							"sid": 166534619591743
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "signal",
+									"objectClass": "System",
+									"sid": 903293199513679,
+									"parameters": {
+										"tag": "\"stopped\""
+									}
+								}
+							],
+							"sid": 162719502011730
+						}
+					]
+				}
+			],
+			"sid": 799736176414327
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "popup",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 774936166300442,
+							"parameters": {
+								"object": "btnOk"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "popBG",
+							"sid": 971765388875327,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"pop-play-out\"",
+								"property": "offsetY",
+								"end-value": "-375",
+								"time": "0.5",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "bgPattern2",
+							"sid": 589796068690088,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "0.5",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no"
+							}
+						}
+					],
+					"sid": 251231075244568
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 755112969180131,
+							"parameters": {
+								"object": "btnCancel"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "popBG",
+							"sid": 771146927680178,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"pop-cancel-out\"",
+								"property": "offsetY",
+								"end-value": "-375",
+								"time": "0.5",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "bgPattern2",
+							"sid": 342214289598604,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "0.5",
+								"ease": "easeinback",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no"
+							}
+						}
+					],
+					"sid": 254856601934510
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tweens-finished",
+							"objectClass": "popBG",
+							"sid": 314556370387364,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"pop-play-out\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 981888857523717,
+							"parameters": {
+								"seconds": "0.2"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 500242250874604,
+							"parameters": {
+								"layout": "Home"
+							}
+						}
+					],
+					"sid": 960895755577799
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 488895301216360,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "back"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 317482603193522,
+							"parameters": {
+								"object": "back"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 740837440691142,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "popBG",
+									"sid": 316360690263297,
+									"parameters": {
+										"unique-id": "163"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "popBG",
+									"sid": 135197603271911,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"pop-quit-in\"",
+										"property": "offsetY",
+										"end-value": "ViewportBottom(0)/2",
+										"time": "0.5",
+										"ease": "easeoutback",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "bgPattern2",
+									"sid": 408653252075577,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"\"",
+										"property": "offsetOpacity",
+										"end-value": "80",
+										"time": "0.5",
+										"ease": "easeoutback",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								}
+							],
+							"sid": 643854422741197
+						}
+					],
+					"isOrBlock": true
+				}
+			],
+			"sid": 352592897594043
+		},
+		{
+			"eventType": "comment",
+			"text": "this function makes player's turn"
+		},
+		{
+			"functionName": "next",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 620348367991178,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "temp",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 892129913400205
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 787326639654802,
+							"parameters": {
+								"first-value": "Functions.WinPlayer",
+								"comparison": 0,
+								"second-value": "4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 209201739282924,
+							"parameters": {
+								"variable": "temp",
+								"value": "current_Player = 1 ? replace(players_mode,current_Player&\",\",\"\") :  replace(players_mode,\",\"&current_Player,\"\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 486764092585636,
+							"parameters": {
+								"variable": "players_mode",
+								"value": "temp"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 999735931845613,
+							"parameters": {
+								"variable": "current_Player",
+								"value": "tokenat(players_mode,index-1,\",\")"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 140676371071902
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 169720036443739,
+							"disabled": true,
+							"parameters": {
+								"variable": "index",
+								"value": "1"
+							}
+						},
+						{
+							"callFunction": "dice color",
+							"sid": 335985246956727
+						}
+					],
+					"sid": 838736550476072
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 525321784448177
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 496778121639352,
+							"parameters": {
+								"variable": "current_Player",
+								"value": "tokenat(players_mode,index,\",\")"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 938278896291171,
+							"parameters": {
+								"variable": "index",
+								"value": "1"
+							}
+						},
+						{
+							"callFunction": "dice color",
+							"sid": 831181177267608
+						}
+					],
+					"sid": 858339308887757
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 996939905077652,
+							"parameters": {
+								"first-value": "index",
+								"comparison": 4,
+								"second-value": "tokencount(players_mode,\",\") - 1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 849814656823892,
+							"parameters": {
+								"variable": "index",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 551294066968354
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "this function will check if there are 2 token on same position (because we can't cut any token if there are 2 tokens on same position)"
+		},
+		{
+			"functionName": "collide_with_double_player",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "pos",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 793425723002621
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 950729490726675,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 566911198595904,
+							"parameters": {
+								"object": "token",
+								"expression": "token.player",
+								"comparison": 1,
+								"value": "current_Player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 945311547728923,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "token",
+									"sid": 456315089892357,
+									"parameters": {
+										"instance-variable": "pos",
+										"comparison": 0,
+										"value": "pos"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "token",
+									"sid": 164509976002735,
+									"parameters": {
+										"object": "token"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 616585781417232,
+									"parameters": {
+										"value": "1"
+									}
+								}
+							],
+							"sid": 212140126942389
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "this function applies custom colors on board"
+		},
+		{
+			"functionName": "color customisation",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 241022049700384,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 726871978300075,
+							"parameters": {
+								"object": "tokens"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "tokens",
+							"sid": 252608338766191,
+							"parameters": {
+								"frame-number": "storeData.At(Self.player-1)-1"
+							}
+						}
+					],
+					"sid": 376503608823631
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 228608308221599,
+							"parameters": {
+								"object": "track"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "track",
+							"sid": 392273139189341,
+							"parameters": {
+								"frame-number": "Self.id >0 ? storeData.At(Self.id-1) : Self.id"
+							}
+						}
+					],
+					"sid": 705611753636725
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 333789154124632,
+							"parameters": {
+								"object": "tokenBG"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "tokenBG",
+							"sid": 969019909188688,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)-1"
+							}
+						}
+					],
+					"sid": 424149595707046
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 980246363020090,
+							"parameters": {
+								"object": "winPlace"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "winPlace",
+							"sid": 111158098349587,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)-1"
+							}
+						}
+					],
+					"sid": 658130246355485
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 483910071384742,
+							"parameters": {
+								"object": "stop"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "stop",
+							"sid": 867355785646754,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)-1"
+							}
+						}
+					],
+					"sid": 342143381325739
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 976838139216087,
+							"parameters": {
+								"object": "arrow"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "arrow",
+							"sid": 321214062169511,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)-1"
+							}
+						}
+					],
+					"sid": 727097853038509
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 918540929740356,
+							"parameters": {
+								"object": "win"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "win",
+							"sid": 739418750323456,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)-1"
+							}
+						}
+					],
+					"sid": 263744373705567
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 376332947917069,
+							"parameters": {
+								"object": "diceBg"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "diceBg",
+							"sid": 401188425631205,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 4,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "diceBg",
+							"sid": 828571955018464,
+							"parameters": {
+								"frame-number": "storeData.At(Self.id-1)"
+							}
+						}
+					],
+					"sid": 971080247580817
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 669710936598464,
+							"parameters": {
+								"object": "playerText"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-font-color",
+							"objectClass": "playerText",
+							"sid": 849676510036065,
+							"parameters": {
+								"color": "Dictionary.Get(\"color\"&storeData.At(Self.id-1)) "
+							}
+						}
+					],
+					"sid": 403137860914942,
+					"disabled": true
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "this function updates dice color for each player"
+		},
+		{
+			"functionName": "dice color",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 433231451477024,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "dice",
+							"sid": 932178572501151,
+							"parameters": {
+								"animation": "\"dice\"&storeData.At(current_Player-1)",
+								"from": "current-frame"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "diceAnim",
+							"sid": 256693020914590,
+							"parameters": {
+								"animation": "\"DiceAnim\"&storeData.At(current_Player-1)",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 824586897814026
+				}
+			]
+		},
+		{
+			"eventType": "comment",
+			"text": "this function will return current player's total token win"
+		},
+		{
+			"functionName": "WinPlayer",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 420939102165134,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-evaluate",
+							"objectClass": "System",
+							"sid": 713468206685046,
+							"parameters": {
+								"object": "tokens",
+								"expression": "tokens.player = current_Player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 775004760504636,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "tokens",
+									"sid": 535235186134252,
+									"parameters": {
+										"instance-variable": "status",
+										"comparison": 0,
+										"value": "\"win\""
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 722207222395765,
+									"parameters": {
+										"first-value": "tokens.PickedCount",
+										"comparison": 0,
+										"second-value": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 994499323752694,
+									"parameters": {
+										"value": "tokens.PickedCount"
+									}
+								}
+							],
+							"sid": 755864198770856
+						}
+					]
+				}
+			]
+		},
+		{
+			"functionName": "pin popups",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 452610931089345,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 499551876041892,
+							"parameters": {
+								"object": "popBG"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 995061430527777,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "btnOk",
+									"sid": 751961856421621,
+									"parameters": {
+										"object": "popBG"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "pin-to-object-properties",
+									"objectClass": "btnOk",
+									"sid": 250698094407168,
+									"behaviorType": "Pin",
+									"parameters": {
+										"pin-to": "popBG",
+										"x": true,
+										"y": true,
+										"angle": false,
+										"width-type": "no",
+										"height-type": "no",
+										"z": false
+									}
+								}
+							],
+							"sid": 663890024729257
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "btnCancel",
+									"sid": 517929811204749,
+									"parameters": {
+										"object": "popBG"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "pin-to-object-properties",
+									"objectClass": "btnCancel",
+									"sid": 486504982682130,
+									"behaviorType": "Pin",
+									"parameters": {
+										"pin-to": "popBG",
+										"x": true,
+										"y": true,
+										"angle": false,
+										"width-type": "no",
+										"height-type": "no",
+										"z": false
+									}
+								}
+							],
+							"sid": 248129322515344
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "popBG",
+									"sid": 577390674473448,
+									"parameters": {
+										"object": "msg"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "pin-to-object-properties",
+									"objectClass": "msg",
+									"sid": 834551782185936,
+									"behaviorType": "Pin",
+									"parameters": {
+										"pin-to": "popBG",
+										"x": true,
+										"y": true,
+										"angle": false,
+										"width-type": "no",
+										"height-type": "no",
+										"z": false
+									}
+								}
+							],
+							"sid": 897699161011577
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "popBG",
+									"sid": 713021625062896,
+									"parameters": {
+										"y": "-370"
+									}
+								},
+								{
+									"id": "set-x",
+									"objectClass": "popBG",
+									"sid": 345341880896043,
+									"parameters": {
+										"x": "ViewportRight(0)/2"
+									}
+								}
+							],
+							"sid": 813223039700490
+						}
+					]
+				}
+			]
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Chat log",
+			"description": "A function to easily add a log message to the chat log textarea.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Since a lot of events need to add something to the ChatLog, this function saves us repeating the actions to add a new line to the end of the chat log and scroll to the bottom so we can still see updates even after they go past the object height."
+				},
+				{
+					"functionName": "AddLog",
+					"functionDescription": "Automatically converted from 'AddLog'",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "message",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 800985506472091
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "ChatLog",
+							"sid": 710245786668700,
+							"parameters": {
+								"text": "(Self.Text & newline) & message"
+							}
+						},
+						{
+							"id": "scroll-to-bottom",
+							"objectClass": "ChatLog",
+							"sid": 242621657598759
+						}
+					],
+					"sid": 336080701294383
+				}
+			],
+			"sid": 519427695973420
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Signalling",
+			"description": "Manages connecting to the signalling server and joining the room.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "On the start of the layout, connect to the signalling server."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 349477788604625
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "ChatLog",
+							"sid": 725753629815270,
+							"parameters": {
+								"text": "\"Connecting to server...\""
+							}
+						},
+						{
+							"id": "add-client-input-value",
+							"objectClass": "Multiplayer",
+							"sid": 628845543081955,
+							"parameters": {
+								"tag": "\"press\"",
+								"precision": "normal-float-4-bytes",
+								"interpolation": "linear"
+							}
+						},
+						{
+							"id": "sync-object",
+							"objectClass": "Multiplayer",
+							"sid": 191231517350466,
+							"parameters": {
+								"object": "tokens",
+								"data": "position-only",
+								"precision": "low-int16-2-bytes",
+								"bandwidth": "normal-bandwidth-unpredictable"
+							}
+						},
+						{
+							"id": "sync-object",
+							"objectClass": "Multiplayer",
+							"sid": 194736966779564,
+							"parameters": {
+								"object": "DiceFamily",
+								"data": "position-and-angle",
+								"precision": "normal-float-4-bytes",
+								"bandwidth": "normal-bandwidth-unpredictable"
+							}
+						},
+						{
+							"id": "sync-instance-variable",
+							"objectClass": "Multiplayer",
+							"sid": 530108547717256,
+							"parameters": {
+								"object": "tokens",
+								"instance-variable": {
+									"name": "press2",
+									"objectClass": "tokens"
+								},
+								"precision": "low-int16-2-bytes",
+								"interpolation": "linear",
+								"client-value-tag": "\"press\""
+							}
+						},
+						{
+							"id": "sync-instance-variable",
+							"objectClass": "Multiplayer",
+							"sid": 671500339439509,
+							"parameters": {
+								"object": "DiceFamily",
+								"instance-variable": {
+									"name": "press",
+									"objectClass": "DiceFamily"
+								},
+								"precision": "low-int16-2-bytes",
+								"interpolation": "linear",
+								"client-value-tag": "\"press\""
+							}
+						},
+						{
+							"id": "connect",
+							"objectClass": "Multiplayer",
+							"sid": 535795646740927,
+							"parameters": {
+								"server": "\"wss://multiplayer.scirra.com\""
+							}
+						}
+					],
+					"sid": 962807830861092
+				},
+				{
+					"eventType": "comment",
+					"text": "Once we successfully connect to the signalling server, request to log in with the username entered on the login screen."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-connected",
+							"objectClass": "Multiplayer",
+							"sid": 286158005070187
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "AddLog",
+							"sid": 154993687522484,
+							"parameters": [
+								"\"Connected, logging in...\""
+							]
+						},
+						{
+							"id": "log-in",
+							"objectClass": "Multiplayer",
+							"sid": 640764230200621,
+							"parameters": {
+								"alias": "MyUsername"
+							}
+						}
+					],
+					"sid": 178888947801069
+				},
+				{
+					"eventType": "comment",
+					"text": "Once successfully logged in, request to join the room name the user entered on the login screen. Note the user's current alias is displayed back to them, because it's possible the signalling server changed our name if it was already taken."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-logged-in",
+							"objectClass": "Multiplayer",
+							"sid": 365992574364758
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "AddLog",
+							"sid": 635818001864098,
+							"parameters": [
+								"\"Logged in as '\" & Multiplayer.MyAlias & \"', joining room '\" & RoomName & \"'...\""
+							]
+						},
+						{
+							"id": "join-room",
+							"objectClass": "Multiplayer",
+							"sid": 185918078811617,
+							"parameters": {
+								"game": "GAME_NAME",
+								"instance": "INSTANCE_NAME",
+								"room": "lowercase(RoomName)",
+								"max-peers": "0"
+							}
+						}
+					],
+					"sid": 563315127781160
+				},
+				{
+					"eventType": "comment",
+					"text": "Upon joining the room, display a different status depending on if we are the host, and add our own name to the list of peers on the right. The appropriate group of events for either the host or a peer is activated and the chat text box is enabled."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-joined-room",
+							"objectClass": "Multiplayer",
+							"sid": 265868921805039
+						}
+					],
+					"actions": [
+						{
+							"id": "set-read-only",
+							"objectClass": "ChatTextBox",
+							"sid": 118445298785261,
+							"parameters": {
+								"mode": "not-read-only"
+							}
+						},
+						{
+							"id": "set-focused",
+							"objectClass": "ChatTextBox",
+							"sid": 564847490814300
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "SendButton",
+							"sid": 968682675662183,
+							"parameters": {
+								"mode": "enabled"
+							}
+						}
+					],
+					"sid": 450319498681792,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-host",
+									"objectClass": "Multiplayer",
+									"sid": 471831928971334
+								}
+							],
+							"actions": [
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 805094358584950,
+									"parameters": {
+										"group-name": "\"Host\"",
+										"state": "activated"
+									}
+								},
+								{
+									"callFunction": "AddLog",
+									"sid": 333710038508752,
+									"parameters": [
+										"\"Joined the chat room as the host\""
+									]
+								},
+								{
+									"id": "add-item",
+									"objectClass": "PeerList",
+									"sid": 690046816395853,
+									"parameters": {
+										"text": "Multiplayer.MyAlias & \" (host)\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "tokens",
+									"sid": 723925998631462,
+									"parameters": {
+										"instance-variable": "id",
+										"value": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "associate-object-with-peer",
+									"objectClass": "Multiplayer",
+									"sid": 298209307303987,
+									"parameters": {
+										"object": "tokens",
+										"peer-id": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "DiceFamily",
+									"sid": 492734145872543,
+									"parameters": {
+										"instance-variable": "peerid",
+										"value": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "associate-object-with-peer",
+									"objectClass": "Multiplayer",
+									"sid": 251486615799784,
+									"parameters": {
+										"object": "DiceFamily",
+										"peer-id": "Multiplayer.MyID"
+									}
+								},
+								{
+									"callFunction": "dice color",
+									"sid": 231760581885029
+								}
+							],
+							"sid": 881592182481667
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 944992757812801
+								}
+							],
+							"actions": [
+								{
+									"id": "set-group-active",
+									"objectClass": "System",
+									"sid": 762679600701170,
+									"parameters": {
+										"group-name": "\"Peer\"",
+										"state": "activated"
+									}
+								},
+								{
+									"callFunction": "AddLog",
+									"sid": 267988828779185,
+									"parameters": [
+										"\"Joined the chat room as a peer\""
+									]
+								},
+								{
+									"id": "add-item",
+									"objectClass": "PeerList",
+									"sid": 248770165329761,
+									"parameters": {
+										"text": "Multiplayer.MyAlias"
+									}
+								},
+								{
+									"callFunction": "dice color",
+									"sid": 845645814764190
+								},
+								{
+									"id": "destroy",
+									"objectClass": "tokens",
+									"sid": 433661018737436
+								},
+								{
+									"id": "destroy",
+									"objectClass": "DiceFamily",
+									"sid": 804665501820563
+								}
+							],
+							"sid": 554573129861591
+						}
+					]
+				},
+				{
+					"eventType": "comment",
+					"text": "If we leave, disconnect or encounter an error, print that to the chat log as well."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-left-room",
+							"objectClass": "Multiplayer",
+							"sid": 656399214180159
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "AddLog",
+							"sid": 185774195501600,
+							"parameters": [
+								"\"Left the chat room\""
+							]
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "ChatTextBox",
+							"sid": 279277576690173,
+							"parameters": {
+								"mode": "disabled"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "SendButton",
+							"sid": 368169987586834,
+							"parameters": {
+								"mode": "disabled"
+							}
+						},
+						{
+							"id": "clear",
+							"objectClass": "PeerList",
+							"sid": 706154580510358
+						}
+					],
+					"sid": 198358000355567
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-disconnected",
+							"objectClass": "Multiplayer",
+							"sid": 718348429197301
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "AddLog",
+							"sid": 897456523528589,
+							"parameters": [
+								"\"Disconnected from signalling server\""
+							]
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "ChatTextBox",
+							"sid": 944705877774178,
+							"parameters": {
+								"mode": "disabled"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "SendButton",
+							"sid": 721834181572459,
+							"parameters": {
+								"mode": "disabled"
+							}
+						},
+						{
+							"id": "clear",
+							"objectClass": "PeerList",
+							"sid": 160231122569746
+						}
+					],
+					"sid": 920780109468379
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-error",
+							"objectClass": "Multiplayer",
+							"sid": 314012630590460
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "AddLog",
+							"sid": 756418299532710,
+							"parameters": [
+								"\"Signalling error: \" & Multiplayer.ErrorMessage"
+							]
+						}
+					],
+					"sid": 928872008464556
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "leaveButton",
+							"sid": 977299054473347
+						}
+					],
+					"actions": [
+						{
+							"id": "disconnect-room",
+							"objectClass": "Multiplayer",
+							"sid": 966402504187252
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 203474194607281,
+							"parameters": {
+								"layout": "Login"
+							}
+						}
+					],
+					"sid": 556632424032298
+				}
+			],
+			"sid": 175888073771516
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Chat",
+			"description": "Manages sending chat messages and joining/leaving peers",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Common",
+					"description": "Events that are common to both the host and peers.",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "When someone joins the chat, log a message in the chat box and add them to the peer list on the right."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-peer-connected",
+									"objectClass": "Multiplayer",
+									"sid": 478542456087809
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddLog",
+									"sid": 317631391387085,
+									"parameters": [
+										"\"'\" & Multiplayer.PeerAlias & \"' joined\""
+									]
+								},
+								{
+									"id": "add-item",
+									"objectClass": "PeerList",
+									"sid": 897780959104019,
+									"parameters": {
+										"text": "Multiplayer.PeerAlias"
+									}
+								}
+							],
+							"sid": 279520392475519
+						},
+						{
+							"eventType": "comment",
+							"text": "When someone leaves the chat, log a message in the chat box and remove them from the peer list on the right."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-peer-disconnected",
+									"objectClass": "Multiplayer",
+									"sid": 131040315287933
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddLog",
+									"sid": 878552096367199,
+									"parameters": [
+										"\"'\" & Multiplayer.PeerAlias & \"' left\""
+									]
+								}
+							],
+							"sid": 330013802531337,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "To remove the right name we check every item in the list, and remove the item index where the item text matches the name of the peer who left."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 519334240731462,
+											"parameters": {
+												"count": "PeerList.ItemCount"
+											}
+										},
+										{
+											"id": "compare-item-text-at",
+											"objectClass": "PeerList",
+											"sid": 358570546689732,
+											"parameters": {
+												"index": "loopindex",
+												"text-to-compare": "Multiplayer.PeerAlias",
+												"case-sensitivity": "case-sensitive"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "remove",
+											"objectClass": "PeerList",
+											"sid": 554797467918653,
+											"parameters": {
+												"index": "loopindex"
+											}
+										}
+									],
+									"sid": 517927179777320
+								}
+							]
+						},
+						{
+							"eventType": "comment",
+							"text": "Log a message if we get kicked. This can happen if we could not connect to the host or if the host quit during the chat."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-kicked",
+									"objectClass": "Multiplayer",
+									"sid": 349977884421955
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddLog",
+									"sid": 695016328454927,
+									"parameters": [
+										"\"Kicked (either could not connect to host or host quit)\""
+									]
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "ChatTextBox",
+									"sid": 255292529996576,
+									"parameters": {
+										"mode": "disabled"
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "SendButton",
+									"sid": 347051707533777,
+									"parameters": {
+										"mode": "disabled"
+									}
+								},
+								{
+									"id": "clear",
+									"objectClass": "PeerList",
+									"sid": 782624919382214
+								}
+							],
+							"sid": 345379649820201
+						}
+					],
+					"sid": 664143118322614
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Peer",
+					"description": "Events specific to chat room peers (i.e. non-host users).",
+					"isActiveOnStart": false,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Non-empty chat messages can be sent with the 'Send' button or just hitting return."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-clicked",
+									"objectClass": "SendButton",
+									"sid": 784016807493113
+								},
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 823011175010611,
+									"parameters": {
+										"key": 13
+									}
+								}
+							],
+							"actions": [],
+							"sid": 339526460753974,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "When we are a peer, we send our chat message to the host. The host will relay it to everyone else in the room."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-text",
+											"objectClass": "ChatTextBox",
+											"sid": 673982224587396,
+											"parameters": {
+												"text": "\"\"",
+												"case": "case-insensitive"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "AddLog",
+											"sid": 185716839359407,
+											"parameters": [
+												"\"<\" & Multiplayer.MyAlias & \"> \" & ChatTextBox.Text"
+											]
+										},
+										{
+											"id": "send-message",
+											"objectClass": "Multiplayer",
+											"sid": 627739660031700,
+											"parameters": {
+												"peer-id": "\"\"",
+												"tag": "\"chat\"",
+												"message": "ChatTextBox.Text",
+												"mode": "reliable-ordered"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "ChatTextBox",
+											"sid": 297418561439847,
+											"parameters": {
+												"text": "\"\""
+											}
+										}
+									],
+									"sid": 177348625329827
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "When we receive a chat message from someone else, add it to the chat log."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-peer-message",
+									"objectClass": "Multiplayer",
+									"sid": 414182684639866,
+									"parameters": {
+										"tag": "\"chat\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddLog",
+									"sid": 634810611549078,
+									"parameters": [
+										"\"<\" & Multiplayer.FromAlias & \"> \" & Multiplayer.Message"
+									]
+								}
+							],
+							"sid": 727415534703523
+						}
+					],
+					"sid": 512628427706669
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Host",
+					"description": "Events specific to the chat room host.",
+					"isActiveOnStart": false,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Non-empty chat messages can be sent with the 'Send' button or just hitting return."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-clicked",
+									"objectClass": "SendButton",
+									"sid": 772161178910658
+								},
+								{
+									"id": "on-key-pressed",
+									"objectClass": "Keyboard",
+									"sid": 171079940413881,
+									"parameters": {
+										"key": 13
+									}
+								}
+							],
+							"actions": [],
+							"sid": 310712215327475,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "When we are the host, we immediately broadcast our own chat messages to everyone else in the room."
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-text",
+											"objectClass": "ChatTextBox",
+											"sid": 288634890888795,
+											"parameters": {
+												"text": "\"\"",
+												"case": "case-insensitive"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "AddLog",
+											"sid": 616356974404609,
+											"parameters": [
+												"\"<\" & Multiplayer.MyAlias & \"> \" & ChatTextBox.Text"
+											]
+										},
+										{
+											"id": "broadcast-message",
+											"objectClass": "Multiplayer",
+											"sid": 503173774188700,
+											"parameters": {
+												"from-id": "\"\"",
+												"tag": "\"chat\"",
+												"message": "ChatTextBox.Text",
+												"mode": "reliable-ordered"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "ChatTextBox",
+											"sid": 618556202782628,
+											"parameters": {
+												"text": "\"\""
+											}
+										}
+									],
+									"sid": 805282957484174
+								}
+							],
+							"isOrBlock": true
+						},
+						{
+							"eventType": "comment",
+							"text": "When we receive a chat message from someone else, we add it to the chat log, but then we must also relay it to everyone else in the chat room so they can all see what each other are sending. Note that the 'Broadcast' action does not send to the 'From ID' peer - there's no point sending them back the same message they just sent to us."
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-peer-message",
+									"objectClass": "Multiplayer",
+									"sid": 333077474197066,
+									"parameters": {
+										"tag": "\"chat\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddLog",
+									"sid": 445465808953740,
+									"parameters": [
+										"\"<\" & Multiplayer.FromAlias & \"> \" & Multiplayer.Message"
+									]
+								},
+								{
+									"id": "broadcast-message",
+									"objectClass": "Multiplayer",
+									"sid": 326723614863886,
+									"parameters": {
+										"from-id": "Multiplayer.FromID",
+										"tag": "\"chat\"",
+										"message": "Multiplayer.Message",
+										"mode": "reliable-ordered"
+									}
+								}
+							],
+							"sid": 972743847230311
+						}
+					],
+					"sid": 281506662298413
+				}
+			],
+			"sid": 611742504349141
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Game",
+			"description": "gameplay and synchronization",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "GamePeer",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-created",
+									"objectClass": "tokens",
+									"sid": 858965058092477
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "tokens",
+									"sid": 489535475684291,
+									"parameters": {
+										"instance-variable": "id",
+										"value": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "associate-object-with-peer",
+									"objectClass": "Multiplayer",
+									"sid": 137484801091769,
+									"parameters": {
+										"object": "tokens",
+										"peer-id": "Multiplayer.MyID"
+									}
+								},
+								{
+									"callFunction": "color customisation",
+									"sid": 738833508713059
+								}
+							],
+							"sid": 208950912905970
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-client-update",
+									"objectClass": "Multiplayer",
+									"sid": 941904739770189
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "DiceFamily",
+									"sid": 814205870272379,
+									"parameters": {
+										"instance-variable": "peerid",
+										"comparison": 0,
+										"value": "Multiplayer.MyID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-client-state",
+									"objectClass": "Multiplayer",
+									"sid": 497392348653448,
+									"parameters": {
+										"tag": "\"press\"",
+										"value": "Touch.TouchCount"
+									}
+								},
+								{
+									"id": "set-client-state",
+									"objectClass": "Multiplayer",
+									"sid": 109499490110599,
+									"parameters": {
+										"tag": "\"press2\"",
+										"value": "Touch.TouchCount"
+									}
+								}
+							],
+							"sid": 797617746497065
+						}
+					],
+					"sid": 604417476226513
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "GameHost",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "on-peer-connected",
+									"objectClass": "Multiplayer",
+									"sid": 239220966944940
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 641733698989197,
+									"parameters": {
+										"object-to-create": "tokens",
+										"layer": "\"board\"",
+										"x": "0",
+										"y": "0",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "tokens",
+									"sid": 240173596554378,
+									"parameters": {
+										"instance-variable": "id",
+										"value": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "associate-object-with-peer",
+									"objectClass": "Multiplayer",
+									"sid": 502177976378061,
+									"parameters": {
+										"object": "tokens",
+										"peer-id": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 162046879354433,
+									"parameters": {
+										"object-to-create": "DiceFamily",
+										"layer": "\"board\"",
+										"x": "0",
+										"y": "0",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "DiceFamily",
+									"sid": 737366166598762,
+									"parameters": {
+										"instance-variable": "peerid",
+										"value": "Multiplayer.MyID"
+									}
+								},
+								{
+									"id": "associate-object-with-peer",
+									"objectClass": "Multiplayer",
+									"sid": 309603063565288,
+									"parameters": {
+										"object": "DiceFamily",
+										"peer-id": "Multiplayer.MyID"
+									}
+								},
+								{
+									"callFunction": "dice color",
+									"sid": 468938273953120
+								}
+							],
+							"sid": 936605483050080
+						}
+					],
+					"sid": 751980308150929
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "GameCommon",
+					"description": "",
+					"isActiveOnStart": true,
+					"children": [],
+					"sid": 830951036262979
+				}
+			],
+			"sid": 159835204199286
+		}
+	],
+	"sid": 426068970757843
+}

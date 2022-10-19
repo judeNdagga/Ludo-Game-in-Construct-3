@@ -1,0 +1,394 @@
+{
+	"name": "dice",
+	"plugin-id": "Sprite",
+	"sid": 755246516237490,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 101,
+						"height": 100,
+						"originX": 0.504950495049505,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 0.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7729428,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 1.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7572438,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 2.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4206554,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 3.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 1319089,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 4.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 1135771,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 5.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2484729,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dy 6.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2947558,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 846834328802251,
+				"name": "dice1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 101,
+						"height": 100,
+						"originX": 0.504950495049505,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 0.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3639799,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 1.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8374708,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 2.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4156115,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 3.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6541726,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 4.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2937504,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 5.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6304778,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dg 6.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6736864,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 174514777060849,
+				"name": "dice2",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 101,
+						"height": 100,
+						"originX": 0.504950495049505,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 0.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8382536,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 1.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2004884,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 2.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8068786,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 3.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 28179,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 4.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4337319,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 5.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9278379,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\dr 6.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5452270,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 184591262652773,
+				"name": "dice3",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 101,
+						"height": 100,
+						"originX": 0.504950495049505,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 0.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6264238,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 1.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9964648,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 2.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 4433194,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 3.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5188506,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 4.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 5917327,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 5.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2349616,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 100,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.505,
+						"originalSource": "D:\\Magical Ride\\Templates\\ludo\\img\\dice\\db 6.png",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8278165,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 898943284046597,
+				"name": "dice4",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

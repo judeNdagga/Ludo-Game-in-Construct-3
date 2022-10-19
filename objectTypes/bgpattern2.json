@@ -1,0 +1,26 @@
+{
+	"name": "bgPattern2",
+	"plugin-id": "TiledBg",
+	"sid": 249950993497754,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 178016499430842
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 20,
+		"height": 20,
+		"originX": 6.25,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 8011670,
+		"useCollisionPoly": true
+	}
+}
